@@ -36,7 +36,6 @@
     if filereadable(expand("~/.vim/bundle/snipmate-snippets/snippets/support_functions.vim"))
         source ~/.vim/bundle/snipmate-snippets/snippets/support_functions.vim
     endif
-    Bundle 'perfectworks/fenbi-snippet'
 " }
 
 " JavaScript {
@@ -67,4 +66,6 @@
     Bundle 'mattn/zencoding-vim'
     Bundle 'juvenn/mustache.vim'
     Bundle 'perfectworks/vim-velocity'
+    Bundle 'perfectworks/fenbi-snippet'
+    Bundle 'perfectworks/fenbi-frontend'
 " }
