@@ -18,7 +18,6 @@
 " }
 
 " General Programming {
-    Bundle 'scrooloose/syntastic'
     Bundle 'tpope/vim-fugitive'
     Bundle 'mattn/webapi-vim'
     Bundle 'mattn/gist-vim'
@@ -47,7 +46,6 @@
 
 " HTML {
     Bundle 'amirh/HTML-AutoCloseTag'
-    Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
 " }
 
 " Misc {
@@ -68,4 +66,5 @@
     Bundle 'perfectworks/vim-velocity'
     Bundle 'perfectworks/fenbi-snippet'
     Bundle 'perfectworks/fenbi-frontend'
+    Bundle 'hail2u/vim-css3-syntax'
 " }
