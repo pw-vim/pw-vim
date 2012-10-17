@@ -74,7 +74,6 @@
     set viewoptions=folds,cursor,unix,slash " better unix / windows compatibility
     set virtualedit=onemore         " allow for cursor beyond last character
     set history=1000                " Store a ton of history (default is 20)
-    set nospell                     " spell checking off
     set hidden                      " allow buffer switching without saving
 
     " Setting up the directories {
@@ -405,10 +404,6 @@
         endfunction
 
         autocmd BufWritePost *.js,*.c,*.cpp call GenerateTag()
-    " }
-
-    " Sync edit file by bsync {
-        autocmd BufWritePost * call system('bsync '.expand('%:p').' &')
     " }
 
     " clang complete {
