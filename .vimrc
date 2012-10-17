@@ -1,5 +1,5 @@
 " Modeline and Notes {
-" vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
+" vim: set foldmarker={,} foldmethod=marker :
 "
 "                    __ _ _____              _
 "         ___ _ __  / _/ |___ /      __   __(_)_ __ ___
@@ -68,14 +68,6 @@
     set ambiwidth=double
     set fileencodings=ucs-bom,utf-8,gbk
     set fileformats=unix,dos,mac
-
-    " Most prefer to automatically switch to the current file directory when
-    " a new buffer is opened; to prevent this behavior, add
-    " let g:spf13_no_autochdir = 1 to your .vimrc.bundles.local file
-    if !exists('g:spf13_no_autochdir')
-        autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-        " always switch to the current file directory.
-    endif
 
     " set autowrite                 " automatically write a file when leaving a modified buffer
     set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
@@ -151,7 +143,6 @@
 " }
 
 " Formatting {
-    set nowrap                      " wrap long lines
     set autoindent                  " indent at the same level of the previous line
     set shiftwidth=4                " use indents of 4 spaces
     set expandtab                   " tabs are spaces, not tabs
@@ -175,16 +166,6 @@
     else
         let mapleader=g:spf13_leader
     endif
-
-    " Easier moving in tabs and windows
-    map <C-J> <C-W>j<C-W>_
-    map <C-K> <C-W>k<C-W>_
-    map <C-L> <C-W>l<C-W>_
-    map <C-H> <C-W>h<C-W>_
-
-    " Wrapped lines goes down/up to next row, rather than next line in file.
-    nnoremap j gj
-    nnoremap k gk
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
@@ -415,21 +396,35 @@
         nnoremap <Leader>u :UndotreeToggle<CR>
      " }
 
-    " Generate JavaScript tags {
+    " Generate tags {
         function! GenerateTag()
-            let file = fnamemodify(findfile('jstags', '.;'), ':p')
+            let file = fnamemodify(findfile('update-tag', '.;'), ':p')
             if executable(file)
-                execute ':silent !' . file
+                execute ':silent !' . file . ' ' . &filetype
             endif
         endfunction
 
-        autocmd BufWritePost *.js call GenerateTag()
+        autocmd BufWritePost *.js,*.c,*.cpp call GenerateTag()
     " }
 
     " Sync edit file by bsync {
         autocmd BufWritePost * call system('bsync '.expand('%:p').' &')
     " }
 
+    " clang complete {
+        if exists("*g:ClangUpdateQuickFix")
+            let g:clang_hl_errors = 1
+            let g:clang_complete_copen = 1
+            let g:clang_close_preview = 1
+
+            " call ClangUpdateQuickFix when saving c files
+            autocmd BufWritePost *.c,*.h,*.cpp,*.hpp,*.cc call g:ClangUpdateQuickFix()
+        endif
+    " }
+
+    " Gist {
+        let g:gist_open_browser_after_post = 1
+    " }
 " }
 
 " GUI Settings {
