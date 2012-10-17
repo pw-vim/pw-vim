@@ -19,6 +19,7 @@
     set autowriteall
     set nospell
     set wildignore+=*-target,target
+    set viewoptions-=options
 " }
 
 " Vim UI {
@@ -54,6 +55,11 @@
 
     " map double j to <esc>
     imap <silent> jj <esc>:w<cr>
+
+    unmap [F
+    iunmap [F
+    unmap [H
+    iunmap [H
 
     " F7/F8 to jump to next/prev diff / location-list {
     " @see http://vim.wikia.com/wiki/Selecting_changes_in_diff_mode
@@ -106,6 +112,15 @@
 " }
 
 " Plugins {
+    " OmniComplete {
+        iunmap <Esc>
+        iunmap <CR>
+        iunmap <Down>
+        iunmap <Up>
+        iunmap <C-d>
+        iunmap <C-u>
+    " }
+
     " SnipMate {
         " Setting the author var
         " If forking, please overwrite in your .vimrc.local file
@@ -162,18 +177,15 @@
         unlet! g:neocomplcache_keyword_patterns
         unlet! g:neocomplcache_omni_patterns
 
+        sunmap <tab>
+        sunmap <C-k>
+
         iunmap <tab>
         iunmap <s-tab>
-        sunmap <tab>
-
         iunmap <C-k>
-        sunmap <C-k>
         iunmap <C-g>
         iunmap <C-l>
-
-        iunmap <CR>
         iunmap <s-CR>
-
         iunmap <BS>
         iunmap <C-y>
 
@@ -202,6 +214,10 @@
 
     " Sync edit file by bsync {
         autocmd BufWritePost * call system('bsync '.expand('%:p').' &')
+    " }
+
+    " TagBar {
+        unmap <leader>tt
     " }
 " }
 
