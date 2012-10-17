@@ -27,7 +27,7 @@ for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc; do [ -e $i ] && [ ! -L $i ] && m
 
 if [ ! -e $endpath/.git ]; then
     echo "cloning pw-vim\n"
-    git clone --recursive -b 3.0 git://github.com/perfectworks/pw-vim.git $endpath
+    git clone --recursive git://github.com/perfectworks/pw-vim.git $endpath
 else
     echo "updating pw-vim\n"
     cd $endpath && git pull
