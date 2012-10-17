@@ -18,8 +18,9 @@
     set laststatus=2
     set autowriteall
     set nospell
-    set wildignore+=*-target,target
+    set wildignore+=*-target,target,tmp_*
     set viewoptions-=options
+    set nolist
 " }
 
 " Vim UI {
