@@ -17,7 +17,7 @@ The easiest way to install pw-vim is to use our [automatic installer](https://ra
 
 ```bash
 
-    curl https://raw.github.com/perfectworks/pw-vim/3.0/bootstrap.sh -L -o - | sh
+    curl https://raw.github.com/perfectworks/pw-vim/master/bootstrap.sh -L -o - | sh
 
 ```
 
@@ -73,7 +73,7 @@ The simpliest (and safest) way to update is to simply rerun the installer. It wi
 
 ```bash
 
-    curl https://raw.github.com/perfectworks/pw-vim/3.0/bootstrap.sh -L -o - | sh
+    curl https://raw.github.com/perfectworks/pw-vim/master/bootstrap.sh -L -o - | sh
 
 ```
 
