@@ -420,6 +420,12 @@
     " Gist {
         let g:gist_open_browser_after_post = 1
     " }
+
+    " Keep window position when switching buffers {
+        au BufLeave * let b:winview = winsaveview()
+        au BufLeave * let b:winview = winsaveview()
+        au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+    " }
 " }
 
 " GUI Settings {
