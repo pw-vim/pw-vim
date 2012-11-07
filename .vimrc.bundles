@@ -142,6 +142,7 @@
             Bundle 'perfectworks/vim-velocity'
             Bundle 'juvenn/mustache.vim'
             Bundle 'mattn/zencoding-vim'
+            Bundle 'nono/vim-handlebars'
         endif
     " }
 
