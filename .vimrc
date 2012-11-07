@@ -77,6 +77,7 @@
 
     " Setting up the directories {
         set backup                      " backups are nice ...
+        set noswapfile                  " swapfile is annoying
         if has('persistent_undo')
             set undofile                "so is persistent undo ...
             set undolevels=1000         "maximum number of changes that can be undone
@@ -417,12 +418,6 @@
 
     " Gist {
         let g:gist_open_browser_after_post = 1
-    " }
-
-    " Keep window position when switching buffers {
-        au BufLeave * let b:winview = winsaveview()
-        au BufLeave * let b:winview = winsaveview()
-        au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
     " }
 " }
 
