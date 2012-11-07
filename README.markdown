@@ -175,6 +175,7 @@ I'm always happy to take pull requests from others. Go ahead and fork me.
 [Vundle]:http://github.com/gmarik/vundle
 [PIV]:http://github.com/spf13/PIV
 [NERDCommenter]:http://github.com/scrooloose/nerdcommenter
+[Undotree]:https://github.com/mbbill/undotree
 [NERDTree]:http://github.com/scrooloose/nerdtree
 [ctrlp]:http://github.com/kien/ctrlp.vim
 [solarized]:http://github.com/altercation/vim-colors-solarized
