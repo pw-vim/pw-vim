@@ -226,20 +226,6 @@
         cmap <C-E> <End>
     " }
 
-    " F7/F8 to jump to next/prev diff / location-list {
-    " @see http://vim.wikia.com/wiki/Selecting_changes_in_diff_mode
-        if &diff
-            let g:origCursorPos=getpos('.')
-            autocmd WinEnter * :call setpos('.', g:origCursorPos)
-            autocmd WinLeave * :let g:origCursorPos=getpos('.')
-            nmap <F7> [c
-            nmap <F8> ]c
-        else
-            map <F7> :lprev<cr>
-            map <F8> :lnext<cr>
-        endif
-    " }
-
     " Visual block search {
         function! VisualSearch(direction) range
             let l:saved_reg = @"

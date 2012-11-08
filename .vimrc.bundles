@@ -89,6 +89,7 @@
             Bundle 'sjl/vitality.vim'
             Bundle 'tyru/fencview.vim'
             Bundle 'perfectworks/chdirectory'
+            Bundle 'tpope/vim-unimpaired.git'
         endif
     " }
 
