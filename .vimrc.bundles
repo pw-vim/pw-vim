@@ -84,6 +84,7 @@
             Bundle 'flazz/vim-colorschemes'
             Bundle 'mbbill/undotree'
             Bundle 'myusuf3/numbers.vim'
+            Bundle 'vim-scripts/restore_view.vim'
 
             Bundle 'tomasr/molokai'
             Bundle 'sjl/vitality.vim'
@@ -144,7 +145,6 @@
             Bundle 'juvenn/mustache.vim'
             Bundle 'mattn/zencoding-vim'
             Bundle 'nono/vim-handlebars'
-
             Bundle 'beyondwords/vim-twig'
         endif
     " }

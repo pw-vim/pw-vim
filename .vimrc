@@ -88,9 +88,11 @@
     " g:spf13_no_views = 1
     " in your .vimrc.bundles.local file"
     if !exists('g:spf13_no_views')
-        " Could use * rather than *.*, but I prefer to leave .files unsaved
-        au BufWinLeave *.* silent! mkview  "make vim save view (state) (folds, cursor, etc)
-        au BufWinEnter *.* silent! loadview "make vim load view (state) (folds, cursor, etc)
+        " Add exclusions to mkview and loadview
+        " eg: *.*, svn-commit.tmp
+        let g:skipview_files = [
+            \ '[example pattern]'
+            \ ]
     endif
     " }
 " }
@@ -217,6 +219,10 @@
 
     " Adjust viewports to the same size
     map <Leader>= <C-w>=
+
+    " map <Leader>f to display all lines with keyword under cursor
+    " and ask which one to jump to
+    nmap <Leader>f [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
     " Easier horizontal scrolling
     map zl zL
