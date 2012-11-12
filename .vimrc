@@ -162,6 +162,7 @@
     "character) add let g:spf13_leader='\' in your .vimrc.bundles.local file
     if !exists('g:spf13_leader')
         let mapleader = ','
+        nnoremap \ ,
     else
         let mapleader=g:spf13_leader
     endif
@@ -305,12 +306,7 @@
         nmap <leader>nt :NERDTreeFind<CR>
 
         let NERDTreeShowBookmarks=1
-        let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-        let NERDTreeChDirMode=0
-        let NERDTreeQuitOnOpen=1
-        let NERDTreeShowHidden=1
-        let NERDTreeKeepTreeInNewTab=1
-        let g:nerdtree_tabs_open_on_gui_startup=0
+        let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.DS_Store']
     " }
 
     " Ack {

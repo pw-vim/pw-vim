@@ -144,6 +144,8 @@
             Bundle 'juvenn/mustache.vim'
             Bundle 'mattn/zencoding-vim'
             Bundle 'nono/vim-handlebars'
+
+            Bundle 'beyondwords/vim-twig'
         endif
     " }
 
