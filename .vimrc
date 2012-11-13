@@ -297,6 +297,10 @@
             \ 'file': '\.exe$\|\.so$\|\.dll$' }
     " }
 
+    " TagBar {
+        nnoremap <silent> <leader>tt :TagbarToggle<CR>
+     "}
+
     " Switch.vim {
         nnoremap - :Switch<cr>
     " }
