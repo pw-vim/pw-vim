@@ -271,6 +271,9 @@
     " Start shell
     map <Leader>sh :sh<CR>
 
+    " search very magic like perl default, and use g/ to search very no magic
+    nnoremap g/ /\v
+    nnoremap g? ?\v
 " }
 
 " Plugins {
