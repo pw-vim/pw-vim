@@ -91,6 +91,7 @@
             Bundle 'tyru/fencview.vim'
             Bundle 'perfectworks/chdirectory'
             Bundle 'tpope/vim-unimpaired.git'
+            Bundle 'kana/vim-textobj-lastpat'
         endif
     " }
 
