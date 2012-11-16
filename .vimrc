@@ -390,17 +390,6 @@
         let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wants to interact with it.
      " }
 
-    " Generate tags {
-        function! GenerateTag()
-            let file = fnamemodify(findfile('update-tag', '.;'), ':p')
-            if executable(file)
-                execute ':silent !' . file . ' ' . &filetype
-            endif
-        endfunction
-
-        autocmd BufWritePost *.js,*.c,*.cpp call GenerateTag()
-    " }
-
     " clang complete {
         if exists("*g:ClangUpdateQuickFix")
             let g:clang_hl_errors = 1
