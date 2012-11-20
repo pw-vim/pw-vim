@@ -203,6 +203,11 @@
         nmap gP "0P
     " }
 
+    " Delete to blackhole {
+        nmap gd "_d
+        nmap gD "_D
+    " }
+
     " map double j to <esc>
     imap <silent> jj <esc>:w<cr>
 
