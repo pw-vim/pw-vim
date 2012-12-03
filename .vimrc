@@ -68,7 +68,15 @@
     set fileencodings=ucs-bom,utf-8,gbk
     set fileformats=unix,dos,mac
 
-    " set autowrite                 " automatically write a file when leaving a modified buffer
+    " Most prefer to automatically switch to the current file directory when
+    " a new buffer is opened; to prevent this behavior, add
+    " let g:spf13_no_autochdir = 1 to your .vimrc.bundles.local file
+    if !exists('g:spf13_no_autochdir')
+        autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+        " always switch to the current file directory.
+    endif
+
+    " set autowrite                  " automatically write a file when leaving a modified buffer
     set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
     set viewoptions=folds,cursor,unix,slash " better unix / windows compatibility
     set virtualedit=onemore         " allow for cursor beyond last character
@@ -153,7 +161,7 @@
     set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
     "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
     " Remove trailing whitespaces and ^M chars
-    autocmd FileType css,less,vm,vim,c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+    autocmd FileType css,less,vm,vim,c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
 " }
 
@@ -434,6 +442,14 @@
 
  " Functions {
 
+function! UnBundle(arg, ...)
+  let bundle = vundle#config#init_bundle(a:arg, a:000)
+  call filter(g:bundles, 'v:val["name_spec"] != "' . a:arg . '"')
+endfunction
+
+com! -nargs=+         UnBundle
+\ call UnBundle(<args>)
+
 function! InitializeDirectories()
     let separator = "."
     let parent = $HOME
@@ -476,6 +492,25 @@ function! NERDTreeInitAsNeeded()
         wincmd l
     endif
 endfunction
+
+" Strip whitespace
+function! StripTrailingWhitespace()
+    " To disable the stripping of whitespace, add the following to your
+    " .vimrc.local file:
+    "   let g:spf13_keep_trailing_whitespace = 1
+    if !exists('g:spf13_keep_trailing_whitespace')
+        " Preparation: save last search, and cursor position.
+        let _s=@/
+        let l = line(".")
+        let c = col(".")
+        " do the business:
+        %s/\s\+$//e
+        " clean up: restore previous search history, and cursor position
+        let @/=_s
+        call cursor(l, c)
+    endif
+endfunction
+
 " }
 
 " Use fork vimrc if available {
@@ -483,6 +518,7 @@ endfunction
         source ~/.vimrc.fork
     endif
 " }
+
 " Use local vimrc if available {
     if filereadable(expand("~/.vimrc.local"))
         source ~/.vimrc.local

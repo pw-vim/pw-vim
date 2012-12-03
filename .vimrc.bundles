@@ -76,6 +76,7 @@
         if count(g:spf13_bundle_groups, 'general')
             Bundle 'scrooloose/nerdtree'
             Bundle 'tpope/vim-surround'
+            Bundle 'spf13/vim-autoclose'
             Bundle 'kien/ctrlp.vim'
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'

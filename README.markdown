@@ -1,6 +1,6 @@
 # pw-vim : PerfectWorks's Vim Distribution
 
-     ______   __     __        __   __   __     __    __    
+ ______   __     __        __   __   __     __    __    
     /\  == \ /\ \  _ \ \      /\ \ / /  /\ \   /\ "-./  \   
     \ \  _-/ \ \ \/ ".\ \     \ \ \'/   \ \ \  \ \ \-./\ \  
      \ \_\    \ \__/".~\_\     \ \__|    \ \_\  \ \_\ \ \_\ 
@@ -66,7 +66,7 @@ to verify all good, run:
 
 #### Installing pw-vim on Windows
 
-The easiest way is to download and run the pw-vim-windows-install.cmd file.
+The easiest way is to download and run the pw-vim-windows-install.cmd file. Remember to run this file in **Administrator Mode** if you want the symlinks to be created successfully.
 
 ## Updating to the latest version
 The simpliest (and safest) way to update is to simply rerun the installer. It will completely and non destructively upgrade to the latest version. 
@@ -129,6 +129,21 @@ To add a new bundle
 ```bash
     echo Bundle \'spf13/vim-colors\' >> ~/.vimrc.bundles.local
 ```
+
+## Removing (disabling) an included plugin
+
+Create `~/.vimrc.local` if it doesn't already exist.
+
+Add the UnBundle command to this line. It takes the same input as the Bundle line, so simply copy the line you want to disable and add 'Un' to the beginning.
+
+For example, disabling the 'AutoClose' and 'scrooloose/syntastic' plugins
+
+```bash
+    echo UnBundle \'AutoClose\' >> ~/.vimrc.local
+    echo UnBundle \'scrooloose/syntastic\' >> ~/.vimrc.local
+```
+
+**Remember to run ':BundleClean!' after this to remove the existing directories**
 
 # Difference betweet pw-vim and [spf13-vim]
 
