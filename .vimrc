@@ -328,7 +328,7 @@
     " }
 
     " Ack {
-        nmap <F3> :LAck <C-R><C-W>
+        nmap <F3> :Ack <C-R><C-W>
     " }
 
     " SnipMate {
