@@ -17,19 +17,19 @@ lnif() {
     fi
 }
 
-echo "Thanks for installing pw-vim\n"
+echo "Thanks for installing pw-vim"
 
 # Backup existing .vim stuff
-echo "backing up current vim config\n"
+echo "backing up current vim config"
 today=`date +%Y%m%d`
 for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
 
 
 if [ ! -e $endpath/.git ]; then
-    echo "cloning pw-vim\n"
+    echo "cloning pw-vim"
     git clone --recursive git://github.com/perfectworks/pw-vim.git $endpath
 else
-    echo "updating pw-vim\n"
+    echo "updating pw-vim"
     cd $endpath && git pull
 fi
 

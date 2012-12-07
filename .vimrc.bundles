@@ -84,14 +84,18 @@
             Bundle 'flazz/vim-colorschemes'
             Bundle 'mbbill/undotree'
             Bundle 'myusuf3/numbers.vim'
-            Bundle 'vim-scripts/restore_view.vim'
             Bundle 'scrooloose/syntastic.git'
+
+            if !exists('g:spf13_no_views')
+                Bundle 'vim-scripts/restore_view.vim'
+            endif
 
             Bundle 'tomasr/molokai'
             Bundle 'sjl/vitality.vim'
             Bundle 'tyru/fencview.vim'
             Bundle 'perfectworks/chdirectory'
             Bundle 'tpope/vim-unimpaired.git'
+            Bundle 'nathanaelkane/vim-indent-guides'
             Bundle 'tpope/vim-abolish.git'
         endif
     " }

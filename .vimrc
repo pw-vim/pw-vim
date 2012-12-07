@@ -284,24 +284,6 @@
         set tags=./tags;/,~/.vimtags
     " }
 
-    " CtrlP {
-        nmap <silent> <C-j> :CtrlPTag<cr>
-        nmap <silent> <space> :CtrlPMRUFiles<cr>
-
-        let g:ctrlp_regexp = 1
-        let g:ctrlp_cmd = 'CtrlPMixed'
-        let g:ctrlp_max_files = 10000
-        let g:ctrlp_working_path_mode = 2
-
-        let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-            \ 'file': '\.exe$\|\.so$\|\.dll$' }
-    " }
-
-    " TagBar {
-        nnoremap <silent> <leader>tt :TagbarToggle<CR>
-     "}
-
     " Switch.vim {
         nnoremap - :Switch<cr>
     " }
@@ -365,7 +347,34 @@
 
      " PyMode {
         let g:pymode_lint_checker = "pyflakes"
+        let g:pymode_utils_whitespaces = 0
      " }
+
+     " ctrlp {
+        nmap <silent> <C-j> :CtrlPTag<cr>
+        nmap <silent> <space> :CtrlPMRUFiles<cr>
+
+        let g:ctrlp_regexp = 1
+        let g:ctrlp_cmd = 'CtrlPMixed'
+        let g:ctrlp_max_files = 10000
+        let g:ctrlp_working_path_mode = 'ra'
+
+        let g:ctrlp_custom_ignore = {
+            \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+            \ 'file': '\.exe$\|\.so$\|\.dll$' }
+
+        let g:ctrlp_user_command = {
+            \ 'types': {
+                \ 1: ['.git', 'cd %s && git ls-files'],
+                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+            \ },
+            \ 'fallback': 'find %s -type f'
+        \ }
+     "}
+
+     " TagBar {
+        nnoremap <silent> <leader>tt :TagbarToggle<CR>
+     "}
 
      " PythonMode {
      " Disable if python support not present
