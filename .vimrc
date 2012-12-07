@@ -68,14 +68,6 @@
     set fileencodings=ucs-bom,utf-8,gbk
     set fileformats=unix,dos,mac
 
-    " Most prefer to automatically switch to the current file directory when
-    " a new buffer is opened; to prevent this behavior, add
-    " let g:spf13_no_autochdir = 1 to your .vimrc.bundles.local file
-    if !exists('g:spf13_no_autochdir')
-        autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-        " always switch to the current file directory.
-    endif
-
     " set autowrite                  " automatically write a file when leaving a modified buffer
     set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
     set viewoptions=folds,cursor,unix,slash " better unix / windows compatibility
@@ -217,7 +209,7 @@
     " }
 
     " map double j to <esc>
-    imap <silent> jj <esc>:w<cr>
+    imap <silent> jj <esc>
 
     " For when you forget to sudo.. Really Write the file.
     cmap w!! w !sudo tee % >/dev/null
@@ -416,6 +408,12 @@
 
     " Gist {
         let g:gist_open_browser_after_post = 1
+    " }
+
+    " syntastic {
+        let g:syntastic_auto_loc_list = 2
+        let g:syntastic_quiet_warnings = 0
+        let g:syntastic_javascript_jslint_conf = "--unparam --unused --browser --vars --nomen --indent 4 --plusplus --sloppy --predef define --predef window"
     " }
 " }
 
