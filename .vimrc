@@ -191,13 +191,6 @@
     " Change Working Directory to that of the current file
     cmap cd. lcd %:p:h
 
-    " Fix home and end keybindings for screen, particularly on mac
-    " - for some reason this fixes the arrow keys too. huh.
-    map [F $
-    imap [F $
-    map [H g0
-    imap [H g0
-
     " Paste yank register {
         nmap gp "0p
         nmap gP "0P
@@ -411,8 +404,6 @@
     " }
 
     " syntastic {
-        let g:syntastic_auto_loc_list = 2
-        let g:syntastic_quiet_warnings = 0
         let g:syntastic_javascript_jslint_conf = "--unparam --unused --browser --vars --nomen --indent 4 --plusplus --sloppy --predef define --predef window"
     " }
 " }
