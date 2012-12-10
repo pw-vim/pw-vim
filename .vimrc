@@ -372,10 +372,6 @@
         \ }
      "}
 
-     " TagBar {
-        nnoremap <silent> <leader>tt :TagbarToggle<CR>
-     "}
-
      " PythonMode {
      " Disable if python support not present
         if !has('python')
