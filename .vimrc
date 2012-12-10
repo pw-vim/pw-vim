@@ -414,6 +414,11 @@
 
     " syntastic {
         let g:syntastic_javascript_jslint_conf = "--unparam --unused --browser --vars --nomen --indent 4 --plusplus --sloppy --predef define --predef window"
+        let g:syntastic_check_on_open = 1
+        let g:syntastic_enable_signs = 0
+        let g:syntastic_mode_map = { 'mode': 'passive',
+                    \ 'active_filetypes': ['javascript'],
+                    \ 'passive_filetypes': [] }
     " }
 " }
 
