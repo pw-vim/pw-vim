@@ -91,7 +91,7 @@
         " Add exclusions to mkview and loadview
         " eg: *.*, svn-commit.tmp
         let g:skipview_files = [
-            \ '[example pattern]'
+            \ '\[example pattern\]'
             \ ]
     endif
     " }
@@ -184,8 +184,8 @@
     nmap <leader>f8 :set foldlevel=8<CR>
     nmap <leader>f9 :set foldlevel=9<CR>
 
-    "clearing highlighted search
-    nmap <silent> <leader>/ :nohlsearch<CR>
+    " Toggle search highlighting
+    nmap <silent> <leader>/ :set invhlsearch<CR>
 
     " Shortcuts
     " Change Working Directory to that of the current file
@@ -315,6 +315,8 @@
     " }
 
     " Tabularize {
+        nmap <Leader>a& :Tabularize /&<CR>
+        vmap <Leader>a& :Tabularize /&<CR>
         nmap <Leader>a= :Tabularize /=<CR>
         vmap <Leader>a= :Tabularize /=<CR>
         nmap <Leader>a: :Tabularize /:<CR>

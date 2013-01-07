@@ -15,6 +15,9 @@ lnif() {
     if [ ! -e $2 ] ; then
         ln -s $1 $2
     fi
+    if [ -L $2 ] ; then
+        ln -sf $1 $2
+    fi
 }
 
 echo "Thanks for installing pw-vim"
@@ -50,4 +53,7 @@ if [ ! -e $HOME/.vim/bundle/vundle ]; then
 fi
 
 echo "update/install plugins using Vundle"
+system_shell=$SHELL
+export SHELL="/bin/sh"
 vim -u $endpath/.vimrc.bundles +BundleInstall! +BundleClean +qall
+export SHELL=$system_shell

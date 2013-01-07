@@ -9,21 +9,19 @@
 
 [pw-vim] is a distribution of vim plugins and resources for Vim, Gvim and [MacVim], an forked repository from [spf13-vim].
 
-# Installation 
+# Installation
 
 ## Linux, \*nix, Mac OSX Installation
 
 The easiest way to install pw-vim is to use our [automatic installer](https://raw.github.com/perfectworks/pw-vim/master/bootstrap.sh) by simply copying and pasting the following line into a terminal. This will install pw-vim and backup your existing vim configuration. If you are upgrading from a prior version (before 3.0) this is also the recommended installation.
 
 ```bash
-
     curl https://raw.github.com/perfectworks/pw-vim/master/bootstrap.sh -L -o - | sh
-
 ```
 
 ## Installing on Windows
 
-On Windows and \*nix [Git] and [Curl] are required. 
+On Windows and \*nix [Git] and [Curl] are required.
 
 ### Installing dependencies
 
@@ -69,7 +67,7 @@ to verify all good, run:
 The easiest way is to download and run the pw-vim-windows-install.cmd file. Remember to run this file in **Administrator Mode** if you want the symlinks to be created successfully.
 
 ## Updating to the latest version
-The simpliest (and safest) way to update is to simply rerun the installer. It will completely and non destructively upgrade to the latest version. 
+The simpliest (and safest) way to update is to simply rerun the installer. It will completely and non destructively upgrade to the latest version.
 
 ```bash
 
@@ -107,9 +105,9 @@ and `.vimrc.bundles.fork` files in the root of their fork.  The load order for t
 3. `.vimrc.bundles` - pw-vim bundle configuration
 4. `.vimrc` - pw-vim vim configuration 
 5. `.vimrc.fork` - fork vim configuration
-6. `.vimrc.local` - local user configuration 
+6. `.vimrc.local` - local user configuration
 
-See `.vimrc.bundles` for specifics on what options can be set to override bundle configuration. See `.vimrc` for specifics 
+See `.vimrc.bundles` for specifics on what options can be set to override bundle configuration. See `.vimrc` for specifics
 on what options can be overridden. Most vim configuration options should be set in your `.vimrc.fork` file, bundle configuration
 needs to be set in your `.vimrc.bundles.fork` file.
 
