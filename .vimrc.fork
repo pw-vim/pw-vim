@@ -139,6 +139,11 @@
     " ZenCoding
        let g:user_zen_leader_key = '<c-k>'
 
+    " Indent guides
+        let g:indent_guides_auto_colors = 0
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 ctermbg=235
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=237
+
 " GUI Settings
     " GVIM- (here instead of .gvimrc)
         if has('gui_running')
