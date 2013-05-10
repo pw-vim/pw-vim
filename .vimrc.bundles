@@ -1,5 +1,5 @@
 " Modeline and Notes {
-" vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
+" vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
 "                    __ _ _____              _
 "         ___ _ __  / _/ |___ /      __   __(_)_ __ ___
@@ -94,13 +94,12 @@
             Bundle 'mbbill/undotree'
             Bundle 'myusuf3/numbers.vim'
             Bundle 'nathanaelkane/vim-indent-guides'
-
             if !exists('g:spf13_no_views')
                 Bundle 'vim-scripts/restore_view.vim'
             endif
-
             Bundle 'airblade/vim-gitgutter'
             Bundle 'tpope/vim-abolish.git'
+
             Bundle 'cmdline-completion'
             Bundle 'tomasr/molokai'
             Bundle 'sjl/vitality.vim'
@@ -118,6 +117,9 @@
             Bundle 'mattn/gist-vim'
             Bundle 'scrooloose/nerdcommenter'
             Bundle 'godlygeek/tabular'
+            if executable('ctags')
+                Bundle 'majutsushi/tagbar'
+            endif
         endif
 
     " Snippets & AutoComplete
@@ -169,6 +171,7 @@
             Bundle 'amirh/HTML-AutoCloseTag'
             Bundle 'hail2u/vim-css3-syntax'
             Bundle 'tpope/vim-haml'
+
             Bundle 'perfectworks/vim-velocity'
             Bundle 'juvenn/mustache.vim'
             Bundle 'mattn/zencoding-vim'
@@ -193,18 +196,18 @@
     " Misc
         if count(g:spf13_bundle_groups, 'misc')
             Bundle 'tpope/vim-markdown'
-            Bundle 'nelstrom/vim-markdown-preview'
             Bundle 'parantapa/moin.vim'
+        endif
+
+
+    " Twig
+        if count(g:spf13_bundle_groups, 'twig')
+            Bundle 'beyondwords/vim-twig'
         endif
 
     " Fenbi.com
         if count(g:spf13_bundle_groups, 'fenbi')
             Bundle 'perfectworks/fenbi-frontend'
-        endif
-
-    " Twig
-        if count(g:spf13_bundle_groups, 'twig')
-            Bundle 'beyondwords/vim-twig'
         endif
     endif
 " }
@@ -213,3 +216,4 @@
     " set autowrite                  " automatically write a file when leaving a modified buffer
     set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
 " }
+

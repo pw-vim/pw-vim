@@ -1,5 +1,5 @@
 " Modeline and Notes {
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker :
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
 "                    __ _ _____              _
 "         ___ _ __  / _/ |___ /      __   __(_)_ __ ___
@@ -72,20 +72,32 @@
     set mouse=a                 " Automatically enable mouse usage
     set mousehide               " Hide the mouse cursor while typing
     scriptencoding utf-8
-    set ambiwidth=double
-    set fileencodings=ucs-bom,utf-8,gbk
-    set fileformats=unix,dos,mac
+
+    if has ('x') && has ('gui') " On Linux use + register for copy-paste
+        set clipboard=unnamedplus
+    elseif has ('gui')          " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed
+    endif
+
+    " Most prefer to automatically switch to the current file directory when
+    " a new buffer is opened; to prevent this behavior, add the following to
+    " your .vimrc.bundles.local file:
+    "   let g:spf13_no_autochdir = 1
+    if !exists('g:spf13_no_autochdir')
+        autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+        " Always switch to the current file directory
+    endif
 
     "set autowrite                       " Automatically write a file when leaving a modified buffer
     set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
-    set viewoptions=folds,cursor,unix,slash " Better Unix / Windows compatibility
+    set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
     set virtualedit=onemore             " Allow for cursor beyond last character
     set history=1000                    " Store a ton of history (default is 20)
+    set spell                           " Spell checking on
     set hidden                          " Allow buffer switching without saving
 
     " Setting up the directories {
         set backup                  " Backups are nice ...
-        set noswapfile                  " Swapfile is annoying
         if has('persistent_undo')
             set undofile                " So is persistent undo ...
             set undolevels=1000         " Maximum number of changes that can be undone
@@ -106,10 +118,14 @@
 " }
 
 " Vim UI {
-    if filereadable(expand("~/.vim/bundle/molokai/colors/molokai.vim"))
-        color molokai                 " Load a colorscheme
-    endif
 
+    if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
+        let g:solarized_termcolors=256
+        color solarized                 " Load a colorscheme
+    endif
+        let g:solarized_termtrans=1
+        let g:solarized_contrast="high"
+        let g:solarized_visibility="high"
     set tabpagemax=15               " Only show 15 tabs
     set showmode                    " Display the current mode
 
@@ -149,11 +165,14 @@
     set wildmenu                    " Show list instead of just completing
     set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
     set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+    set scrolljump=5                " Lines to scroll when cursor leaves screen
+    set scrolloff=3                 " Minimum lines to keep above and below cursor
     set foldenable                  " Auto fold code
-    set wildignore+=*-target,target,tmp_* " ignore temp directories
 " }
 
 " Formatting {
+
+    set nowrap                      " Wrap long lines
     set autoindent                  " Indent at the same level of the previous line
     set shiftwidth=4                " Use indents of 4 spaces
     set expandtab                   " Tabs are spaces, not tabs
@@ -163,10 +182,10 @@
     set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
     "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
     " Remove trailing whitespaces and ^M chars
-    autocmd FileType css,less,vm,vim,c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
     autocmd FileType go autocmd BufWritePre <buffer> Fmt
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
-    autocmd FileType jade setlocal sw=2 sts=2 st=2
+
 " }
 
 " Key (re)Mappings {
@@ -179,6 +198,49 @@
         let mapleader = ','
     else
         let mapleader=g:spf13_leader
+    endif
+
+    " Easier moving in tabs and windows
+    " The lines conflict with the default digraph mapping of <C-K>
+    " If you prefer that functionality, add let g:spf13_no_easyWindows = 1
+    " in your .vimrc.bundles.local file
+
+    if !exists('g:spf13_no_easyWindows')
+        map <C-J> <C-W>j<C-W>_
+        map <C-K> <C-W>k<C-W>_
+        map <C-L> <C-W>l<C-W>_
+        map <C-H> <C-W>h<C-W>_
+    endif
+
+    " Wrapped lines goes down/up to next row, rather than next line in file.
+    nnoremap j gj
+    nnoremap k gk
+
+    " The following two lines conflict with moving to top and
+    " bottom of the screen
+    " If you prefer that functionality, add the following to your
+    " .vimrc.bundles.local file:
+    "   let g:spf13_no_fastTabs = 1
+    if !exists('g:spf13_no_fastTabs')
+        map <S-H> gT
+        map <S-L> gt
+    endif
+
+    " Stupid shift key fixes
+    if !exists('g:spf13_no_keyfixes')
+        if has("user_commands")
+            command! -bang -nargs=* -complete=file E e<bang> <args>
+            command! -bang -nargs=* -complete=file W w<bang> <args>
+            command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+            command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+            command! -bang Wa wa<bang>
+            command! -bang WA wa<bang>
+            command! -bang Q q<bang>
+            command! -bang QA qa<bang>
+            command! -bang Qa qa<bang>
+        endif
+
+        cmap Tabe tabe
     endif
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
@@ -201,20 +263,19 @@
 
     " Shortcuts
     " Change Working Directory to that of the current file
+    cmap cwd lcd %:p:h
     cmap cd. lcd %:p:h
 
-    " Paste yank register {
-        nmap gp "0p
-        nmap gP "0P
-    " }
+    " Visual shifting (does not exit Visual mode)
+    vnoremap < <gv
+    vnoremap > >gv
 
-    " Delete to blackhole {
-        nmap gd "_d
-        nmap gD "_D
-    " }
-
-    " map double j to <esc>
-    imap <silent> jj <esc>
+    " Fix home and end keybindings for screen, particularly on mac
+    " - for some reason this fixes the arrow keys too. huh.
+    map [F $
+    imap [F $
+    map [H g0
+    imap [H g0
 
     " For when you forget to sudo.. Really Write the file.
     cmap w!! w !sudo tee % >/dev/null
@@ -240,66 +301,20 @@
 
 " }
 
-    " Emacs style command line course move {
-        cmap <C-A> <Home>
-        cmap <C-E> <End>
-    " }
-
-    " Visual block search {
-        function! VisualSearch(direction) range
-            let l:saved_reg = @"
-            execute "normal! vgvy"
-
-            let l:pattern = escape(@", '\\/.*$^~[]')
-            let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-            if a:direction == 'b'
-                execute "normal ?" . l:pattern . ""
-            elseif a:direction == 'f'
-                execute "normal /" . l:pattern . ""
-            endif
-
-            let @/ = l:pattern
-            let @" = l:saved_reg
-        endfunction
-
-        vnoremap <silent> * :call VisualSearch('f')<CR>
-        vnoremap <silent> # :call VisualSearch('b')<CR>
-    " }
-
-    " Swap 0 and ^ {
-        nnoremap 0 ^
-        nnoremap ^ 0
-        nnoremap d0 d^
-        nnoremap d^ d0
-        nnoremap c0 c^
-        nnoremap c^ c0
-        nnoremap s0 s^
-        nnoremap s^ s0
-        nnoremap y0 y^
-        nnoremap y^ y0
-    " }
-
-    " Start shell
-    map <Leader>sh :sh<CR>
-
-    " search very magic like perl default, and use g/ to search very no magic
-    nnoremap g/ /\v
-    nnoremap g? ?\v
-" }
-
 " Plugins {
 
-    " Matchit {
+    " PIV {
+        let g:DisableAutoPHPFolding = 0
+        let g:PIVAutoClose = 0
+    " }
+
+    " Misc {
+        let g:NERDShutUp=1
         let b:match_ignorecase = 1
     " }
 
     " Ctags {
         set tags=./tags;/,~/.vimtags
-    " }
-
-    " Switch.vim {
-        nnoremap - :Switch<cr>
     " }
 
     " AutoCloseTag {
@@ -308,24 +323,25 @@
         nmap <Leader>ac <Plug>ToggleAutoCloseMappings
     " }
 
-    " NerdTree {
-        map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-        nmap <leader>nt :NERDTreeFind<CR>
-
-        let NERDTreeShowBookmarks=1
-        let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.DS_Store']
-    " }
-
-    " Ack {
-        nmap <F3> :Ack <C-R><C-W>
-    " }
-
     " SnipMate {
         " Setting the author var
         " If forking, please overwrite in your .vimrc.local file
-        let g:snips_author = 'zhangyc <zhangyc@fenbi.com>'
+        let g:snips_author = 'Steve Francia <steve.francia@gmail.com>'
+    " }
 
-        nmap <F9> :SnipMateOpenSnippetFiles<CR>
+    " NerdTree {
+        map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+        map <leader>e :NERDTreeFind<CR>
+        nmap <leader>nt :NERDTreeFind<CR>
+
+        let NERDTreeShowBookmarks=1
+        let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+        let NERDTreeChDirMode=0
+        let NERDTreeQuitOnOpen=1
+        let NERDTreeMouseMode=2
+        let NERDTreeShowHidden=1
+        let NERDTreeKeepTreeInNewTab=1
+        let g:nerdtree_tabs_open_on_gui_startup=0
     " }
 
     " Tabularize {
@@ -339,32 +355,18 @@
         vmap <Leader>a:: :Tabularize /:\zs<CR>
         nmap <Leader>a, :Tabularize /,<CR>
         vmap <Leader>a, :Tabularize /,<CR>
-        nmap <Leader>a" :Tabularize /"<CR>
-        vmap <Leader>a" :Tabularize /"<CR>
-        nmap <Leader>a/ :Tabularize /\/<CR>
-        vmap <Leader>a/ :Tabularize /\/<CR>
         nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
         vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-    " }
-
-    " ZenCoding {
-       let g:user_zen_leader_key = '<c-k>'
-    " }
-
-    " Session List {
-       set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-       nmap <leader>sl :SessionList<CR>
-       nmap <leader>ss :SessionSave<CR>
-    " }
-
-    " JSON {
-       nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
     " }
 
     " Session List {
         set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
         nmap <leader>sl :SessionList<CR>
         nmap <leader>ss :SessionSave<CR>
+    " }
+
+    " JSON {
+        nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
     " }
 
     " PyMode {
@@ -374,13 +376,9 @@
     " }
 
     " ctrlp {
-        nmap <silent> <space> :CtrlPMRUFiles<cr>
-
-        let g:ctrlp_regexp = 1
-        let g:ctrlp_cmd = 'CtrlPMixed'
-        let g:ctrlp_max_files = 10000
-        let g:ctrlp_working_path_mode = 'ra'
-
+        let g:ctrlp_working_path_mode = 2
+        nnoremap <silent> <D-t> :CtrlP<CR>
+        nnoremap <silent> <D-r> :CtrlPMRU<CR>
         let g:ctrlp_custom_ignore = {
             \ 'dir':  '\.git$\|\.hg$\|\.svn$',
             \ 'file': '\.exe$\|\.so$\|\.dll$' }
@@ -392,6 +390,25 @@
             \ },
             \ 'fallback': 'find %s -type f'
         \ }
+    "}
+
+    " TagBar {
+        nnoremap <silent> <leader>tt :TagbarToggle<CR>
+
+        " If using go please install the gotags program using the following
+        " go install github.com/jstemmer/gotags
+        " And make sure gotags is in your path
+        let g:tagbar_type_go = {
+            \ 'ctagstype' : 'go',
+            \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
+                \ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
+                \ 'r:constructor', 'f:functions' ],
+            \ 'sro' : '.',
+            \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
+            \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
+            \ 'ctagsbin'  : 'gotags',
+            \ 'ctagsargs' : '-sort -silent'
+            \ }
     "}
 
     " PythonMode {
@@ -418,37 +435,27 @@
         let g:undotree_SetFocusWhenToggle=1
     " }
 
-    " clang complete {
-        if exists("*g:ClangUpdateQuickFix")
-            let g:clang_hl_errors = 1
-            let g:clang_complete_copen = 1
-            let g:clang_close_preview = 1
-
-            " call ClangUpdateQuickFix when saving c files
-            autocmd BufWritePost *.c,*.h,*.cpp,*.hpp,*.cc call g:ClangUpdateQuickFix()
+    " indent_guides {
+        if !exists('g:spf13_no_indent_guides_autocolor')
+            let g:indent_guides_auto_colors = 1
+        else
+            " For some colorschemes, autocolor will not work (eg: 'desert', 'ir_black')
+            autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 ctermbg=3
+            autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=4
         endif
+        let g:indent_guides_start_level = 2
+        let g:indent_guides_guide_size = 1
+        let g:indent_guides_enable_on_vim_startup = 1
     " }
 
-    " Gist {
-        let g:gist_open_browser_after_post = 1
-    " }
-
-    " syntastic {
-        let g:syntastic_javascript_jslint_conf = "--unparam --unused --browser --vars --nomen --plusplus --sloppy --predef define --predef window --predef location --predef history --predef location --predef document --predef use --predef __"
-        let g:syntastic_check_on_open = 1
-        let g:syntastic_enable_signs = 0
-        let g:syntastic_mode_map = { 'mode': 'passive',
-                    \ 'active_filetypes': ['javascript'],
-                    \ 'passive_filetypes': [] }
-    " }
 " }
 
 " GUI Settings {
 
     " GVIM- (here instead of .gvimrc)
     if has('gui_running')
-        set guioptions=             " remove all gui options
-        set lines=40                " 40 lines of text instead of 24,
+        set guioptions-=T           " Remove the toolbar
+        set lines=40                " 40 lines of text instead of 24
         if has("gui_gtk2")
             set guifont=Andale\ Mono\ Regular\ 16,Menlo\ Regular\ 15,Consolas\ Regular\ 16,Courier\ New\ Regular\ 18
         elseif has("gui_mac")

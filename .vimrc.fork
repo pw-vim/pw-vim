@@ -1,0 +1,146 @@
+" General
+    set ambiwidth=double
+    set fileencodings=ucs-bom,utf-8,gbk
+    set fileformats=unix,dos,mac
+    set viewoptions-=options
+    set spell&
+    set noswapfile
+    set wildignore+=*-target,target,tmp_*
+    set clipboard&
+
+" Vim UI
+    color molokai
+    set scrolljump&
+    set scrolloff&
+
+" Formatting
+    set wrap&
+    autocmd FileType css,less,vm autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    autocmd FileType jade setlocal sw=2 sts=2 st=2
+
+" Key (re)Mappings
+    nunmap j
+    nunmap k
+    vunmap <
+    vunmap >
+
+    unmap [F
+    iunmap [F
+    unmap [H
+    iunmap [H
+
+    " Paste yank register
+    nmap gp "0p
+    nmap gP "0P
+
+    " Delete to blackhole
+    nmap gd "_d
+    nmap gD "_D
+
+    " map double j to <esc>
+    imap <silent> jj <esc>
+
+    " Emacs style command line course move
+    cmap <C-A> <Home>
+    cmap <C-E> <End>
+
+    " Visual block search
+    function! VisualSearch(direction) range
+        let l:saved_reg = @"
+        execute "normal! vgvy"
+
+        let l:pattern = escape(@", '\\/.*$^~[]')
+        let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+        if a:direction == 'b'
+            execute "normal ?" . l:pattern . "
+        elseif a:direction == 'f'
+            execute "normal /" . l:pattern . "
+        endif
+
+        let @/ = l:pattern
+        let @" = l:saved_reg
+    endfunction
+    vnoremap <silent> * :call VisualSearch('f')<CR>
+    vnoremap <silent> # :call VisualSearch('b')<CR>
+
+    " Swap 0 and ^
+    nnoremap 0 ^
+    nnoremap ^ 0
+    nnoremap d0 d^
+    nnoremap d^ d0
+    nnoremap c0 c^
+    nnoremap c^ c0
+    nnoremap s0 s^
+    nnoremap s^ s0
+    nnoremap y0 y^
+    nnoremap y^ y0
+
+    " Start shell
+    map <Leader>sh :sh<CR>
+
+    " search very magic like perl default, and use g/ to search very no magic
+    nnoremap g/ /\v
+    nnoremap g? ?\v
+
+" Plugins
+    " NerdTree
+        unmap <leader>e
+        let NERDTreeIgnore = ['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.DS_Store']
+        let NERDTreeQuitOnOpen = 0
+        let NERDTreeShowHidden = 0
+
+    " Tabularize
+        nmap <Leader>a" :Tabularize /"<CR>
+        vmap <Leader>a" :Tabularize /"<CR>
+        nmap <Leader>a/ :Tabularize /\/<CR>
+        vmap <Leader>a/ :Tabularize /\/<CR>
+
+    " ctrlp
+        nunmap <D-t>
+        nunmap <D-r>
+        nmap <silent> <space> :CtrlPMRUFiles<cr>
+        let g:ctrlp_regexp = 1
+        let g:ctrlp_cmd = 'CtrlPMixed'
+        let g:ctrlp_max_files = 10000
+        let g:ctrlp_working_path_mode = 'ra'
+
+    " clang complete
+        if exists("*g:ClangUpdateQuickFix")
+            let g:clang_hl_errors = 1
+            let g:clang_complete_copen = 1
+            let g:clang_close_preview = 1
+
+            " call ClangUpdateQuickFix when saving c files
+            autocmd BufWritePost *.c,*.h,*.cpp,*.hpp,*.cc call g:ClangUpdateQuickFix()
+        endif
+
+    " Gist
+        let g:gist_open_browser_after_post = 1
+
+    " syntastic
+        let g:syntastic_javascript_jslint_conf = "--unparam --unused --browser --vars --nomen --plusplus --sloppy --predef define --predef window --predef location --predef history --predef location --predef document --predef use --predef __"
+        let g:syntastic_check_on_open = 1
+        let g:syntastic_enable_signs = 0
+        let g:syntastic_mode_map = { 'mode': 'passive',
+                    \ 'active_filetypes': ['javascript'],
+                    \ 'passive_filetypes': [] }
+
+    " Ack
+        nmap <F3> :Ack <C-R><C-W>
+
+    " SnipMate
+        " Setting the author var
+        " If forking, please overwrite in your .vimrc.local file
+        let g:snips_author = 'pw <perfectworks@gmail.com>'
+
+        nmap <F9> :SnipMateOpenSnippetFiles<CR>
+
+    " ZenCoding
+       let g:user_zen_leader_key = '<c-k>'
+
+" GUI Settings
+    " GVIM- (here instead of .gvimrc)
+        if has('gui_running')
+            set guioptions=
+        endif
