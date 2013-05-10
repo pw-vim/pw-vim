@@ -21,7 +21,7 @@ The easiest way to install pw-vim is to use our [automatic installer](https://ra
 
 ## Installing on Windows
 
-On Windows and \*nix [Git] and [Curl] are required.
+On Windows and \*nix [Git] and [Curl] are required. Also, if you haven't already, you'll need to install [Vim].
 
 ### Installing dependencies
 
@@ -179,6 +179,7 @@ I'm always happy to take pull requests from others. Go ahead and fork me.
 
 [Git]:http://git-scm.com
 [Curl]:http://curl.haxx.se
+[Vim]:http://www.vim.org/download.php#pc
 [msysgit]:http://code.google.com/p/msysgit
 [MacVim]:http://code.google.com/p/macvim/
 [pw-vim]:https://github.com/perfectworks/pw-vim
@@ -195,7 +196,7 @@ I'm always happy to take pull requests from others. Go ahead and fork me.
 [neocomplcache]:http://github.com/shougo/neocomplcache
 [Fugitive]:http://github.com/tpope/vim-fugitive
 [Surround]:https://github.com/tpope/vim-surround
-[Tagbar]:http://github.com/godlygeek/tagbar
+[Tagbar]:http://github.com/majutsushi/tagbar
 [Syntastic]:http://github.com/scrooloose/syntastic
 [vim-easymotion]:http://github.com/Lokaltog/vim-easymotion
 [Matchit]:http://www.vim.org/scripts/script.php?script_id=39

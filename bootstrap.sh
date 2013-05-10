@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-endpath="$HOME/.pw-vim"
-
 warn() {
     echo "$1" >&2
 }
@@ -27,8 +25,10 @@ echo "backing up current vim config"
 today=`date +%Y%m%d`
 for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
 
+endpath="$( cd "$( dirname "$0" )" && pwd)"
 
 if [ ! -e $endpath/.git ]; then
+    endpath="$HOME/.pw-vim"
     echo "cloning pw-vim"
     git clone --recursive git://github.com/perfectworks/pw-vim.git $endpath
 else

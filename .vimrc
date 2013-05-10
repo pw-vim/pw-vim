@@ -1,5 +1,5 @@
 " Modeline and Notes {
-" vim: set foldmarker={,} foldmethod=marker :
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker :
 "
 "                    __ _ _____              _
 "         ___ _ __  / _/ |___ /      __   __(_)_ __ ___
@@ -16,8 +16,9 @@
 " }
 
 " Environment {
+
     " Basics {
-        set nocompatible        " must be first line
+        set nocompatible        " Must be first line
     " }
 
     " Windows Compatible {
@@ -29,7 +30,7 @@
     " }
 
     " Setup Bundle Support {
-    " The next three lines ensure that the ~/.vim/bundle/ system works
+        " The next three lines ensure that the ~/.vim/bundle/ system works
         filetype on
         filetype off
         set rtp+=~/.vim/bundle/vundle
@@ -39,133 +40,143 @@
 " }
 
 " Bundles {
+
     " Use local bundles if available {
         if filereadable(expand("~/.vimrc.bundles.local"))
             source ~/.vimrc.bundles.local
         endif
     " }
+
     " Use fork bundles if available {
         if filereadable(expand("~/.vimrc.bundles.fork"))
             source ~/.vimrc.bundles.fork
         endif
     " }
+
     " Use bundles config {
         if filereadable(expand("~/.vimrc.bundles"))
             source ~/.vimrc.bundles
         endif
     " }
+
 " }
 
 " General {
+
     set background=dark         " Assume a dark background
     if !has('gui')
         "set term=$TERM          " Make arrow and other keys work
     endif
     filetype plugin indent on   " Automatically detect file types.
-    syntax on                   " syntax highlighting
+    syntax on                   " Syntax highlighting
+    set mouse=a                 " Automatically enable mouse usage
+    set mousehide               " Hide the mouse cursor while typing
     scriptencoding utf-8
     set ambiwidth=double
     set fileencodings=ucs-bom,utf-8,gbk
     set fileformats=unix,dos,mac
 
-    " set autowrite                  " automatically write a file when leaving a modified buffer
-    set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
-    set viewoptions=folds,cursor,unix,slash " better unix / windows compatibility
-    set virtualedit=onemore         " allow for cursor beyond last character
-    set history=1000                " Store a ton of history (default is 20)
-    set hidden                      " allow buffer switching without saving
+    "set autowrite                       " Automatically write a file when leaving a modified buffer
+    set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
+    set viewoptions=folds,cursor,unix,slash " Better Unix / Windows compatibility
+    set virtualedit=onemore             " Allow for cursor beyond last character
+    set history=1000                    " Store a ton of history (default is 20)
+    set hidden                          " Allow buffer switching without saving
 
     " Setting up the directories {
-        set backup                      " backups are nice ...
-        set noswapfile                  " swapfile is annoying
+        set backup                  " Backups are nice ...
+        set noswapfile                  " Swapfile is annoying
         if has('persistent_undo')
-            set undofile                "so is persistent undo ...
-            set undolevels=1000         "maximum number of changes that can be undone
-            set undoreload=10000        "maximum number lines to save for undo on a buffer reload
+            set undofile                " So is persistent undo ...
+            set undolevels=1000         " Maximum number of changes that can be undone
+            set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
         endif
 
-    " To disable views set
-    " g:spf13_no_views = 1
-    " in your .vimrc.bundles.local file"
-    if !exists('g:spf13_no_views')
-        " Add exclusions to mkview and loadview
-        " eg: *.*, svn-commit.tmp
-        let g:skipview_files = [
-            \ '\[example pattern\]'
-            \ ]
-    endif
+        " To disable views add the following to your .vimrc.bundles.local file:
+        "   let g:spf13_no_views = 1
+        if !exists('g:spf13_no_views')
+            " Add exclusions to mkview and loadview
+            " eg: *.*, svn-commit.tmp
+            let g:skipview_files = [
+                \ '\[example pattern\]'
+                \ ]
+        endif
     " }
+
 " }
 
 " Vim UI {
     if filereadable(expand("~/.vim/bundle/molokai/colors/molokai.vim"))
-        color molokai                 " load a colorscheme
+        color molokai                 " Load a colorscheme
     endif
 
-    set tabpagemax=15               " only show 15 tabs
-    set showmode                    " display the current mode
+    set tabpagemax=15               " Only show 15 tabs
+    set showmode                    " Display the current mode
 
-    set cursorline                  " highlight current line
+    set cursorline                  " Highlight current line
+
+    highlight clear SignColumn      " SignColumn should match background for
+                                    " things like vim-gitgutter
 
     if has('cmdline_info')
-        set ruler                   " show the ruler
-        set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
-        set showcmd                 " show partial commands in status line and
-                                    " selected characters/lines in visual mode
+        set ruler                   " Show the ruler
+        set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
+        set showcmd                 " Show partial commands in status line and
+                                    " Selected characters/lines in visual mode
     endif
 
     if has('statusline')
         set laststatus=2
 
         " Broken down into easily includeable segments
-        set statusline=%<%f\    " Filename
-        set statusline+=%w%h%m%r " Options
-        set statusline+=%{fugitive#statusline()} "  Git Hotness
-        set statusline+=\ [%{&ff}/%Y]            " filetype
-        set statusline+=\ [%{getcwd()}]          " current dir
+        set statusline=%<%f\                     " Filename
+        set statusline+=%w%h%m%r                 " Options
+        set statusline+=%{fugitive#statusline()} " Git Hotness
+        set statusline+=\ [%{&ff}/%Y]            " Filetype
+        set statusline+=\ [%{getcwd()}]          " Current dir
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
     endif
 
-    set backspace=indent,eol,start  " backspace for dummies
+    set backspace=indent,eol,start  " Backspace for dummies
     set linespace=0                 " No extra spaces between rows
     set nu                          " Line numbers on
-    set showmatch                   " show matching brackets/parenthesis
-    set incsearch                   " find as you type search
-    set hlsearch                    " highlight search terms
-    set winminheight=0              " windows can be 0 line high
-    set ignorecase                  " case insensitive search
-    set smartcase                   " case sensitive when uc present
-    set wildmenu                    " show list instead of just completing
-    set wildmode=list:longest,full  " command <Tab> completion, list matches, then longest common part, then all.
-    set whichwrap=b,s,h,l,<,>,[,]   " backspace and cursor keys wrap to
-    set foldenable                  " auto fold code
+    set showmatch                   " Show matching brackets/parenthesis
+    set incsearch                   " Find as you type search
+    set hlsearch                    " Highlight search terms
+    set winminheight=0              " Windows can be 0 line high
+    set ignorecase                  " Case insensitive search
+    set smartcase                   " Case sensitive when uc present
+    set wildmenu                    " Show list instead of just completing
+    set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+    set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+    set foldenable                  " Auto fold code
     set wildignore+=*-target,target,tmp_* " ignore temp directories
-
 " }
 
 " Formatting {
-    set autoindent                  " indent at the same level of the previous line
-    set shiftwidth=4                " use indents of 4 spaces
-    set expandtab                   " tabs are spaces, not tabs
-    set tabstop=4                   " an indentation every four columns
-    set softtabstop=4               " let backspace delete indent
-    "set matchpairs+=<:>                " match, to be used with %
+    set autoindent                  " Indent at the same level of the previous line
+    set shiftwidth=4                " Use indents of 4 spaces
+    set expandtab                   " Tabs are spaces, not tabs
+    set tabstop=4                   " An indentation every four columns
+    set softtabstop=4               " Let backspace delete indent
+    "set matchpairs+=<:>             " Match, to be used with %
     set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
     "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
     " Remove trailing whitespaces and ^M chars
     autocmd FileType css,less,vm,vim,c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    autocmd FileType go autocmd BufWritePre <buffer> Fmt
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
     autocmd FileType jade setlocal sw=2 sts=2 st=2
 " }
 
 " Key (re)Mappings {
 
-    "The default leader is '\', but many people prefer ',' as it's in a standard
-    "location. To override this behavior and set it back to '\' (or any other
-    "character) add let g:spf13_leader='\' in your .vimrc.bundles.local file
+    " The default leader is '\', but many people prefer ',' as it's in a standard
+    " location. To override this behavior and set it back to '\' (or any other
+    " character) add the following to your .vimrc.bundles.local file:
+    "   let g:spf13_leader='\'
     if !exists('g:spf13_leader')
         let mapleader = ','
-        nnoremap \ ,
     else
         let mapleader=g:spf13_leader
     endif
@@ -173,7 +184,7 @@
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
 
-    """ Code folding options
+    " Code folding options
     nmap <leader>f0 :set foldlevel=0<CR>
     nmap <leader>f1 :set foldlevel=1<CR>
     nmap <leader>f2 :set foldlevel=2<CR>
@@ -219,13 +230,15 @@
     " Adjust viewports to the same size
     map <Leader>= <C-w>=
 
-    " map <Leader>ff to display all lines with keyword under cursor
+    " Map <Leader>ff to display all lines with keyword under cursor
     " and ask which one to jump to
     nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
     " Easier horizontal scrolling
     map zl zL
     map zh zH
+
+" }
 
     " Emacs style command line course move {
         cmap <C-A> <Home>
@@ -332,29 +345,35 @@
         vmap <Leader>a/ :Tabularize /\/<CR>
         nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
         vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-     " }
+    " }
 
-     " ZenCoding {
-        let g:user_zen_leader_key = '<c-k>'
-     " }
+    " ZenCoding {
+       let g:user_zen_leader_key = '<c-k>'
+    " }
 
-     " Session List {
+    " Session List {
+       set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+       nmap <leader>sl :SessionList<CR>
+       nmap <leader>ss :SessionSave<CR>
+    " }
+
+    " JSON {
+       nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
+    " }
+
+    " Session List {
         set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
         nmap <leader>sl :SessionList<CR>
         nmap <leader>ss :SessionSave<CR>
-     " }
+    " }
 
-     " JSON {
-        nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
-     " }
-
-     " PyMode {
+    " PyMode {
         let g:pymode_lint_checker = "pyflakes"
         let g:pymode_utils_whitespaces = 0
-     " }
+        let g:pymode_options = 0
+    " }
 
-     " ctrlp {
-        nmap <silent> <C-j> :CtrlPTag<cr>
+    " ctrlp {
         nmap <silent> <space> :CtrlPMRUFiles<cr>
 
         let g:ctrlp_regexp = 1
@@ -368,33 +387,36 @@
 
         let g:ctrlp_user_command = {
             \ 'types': {
-                \ 1: ['.git', 'cd %s && git ls-files'],
+                \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
                 \ 2: ['.hg', 'hg --cwd %s locate -I .'],
             \ },
             \ 'fallback': 'find %s -type f'
         \ }
-     "}
+    "}
 
-     " PythonMode {
-     " Disable if python support not present
+    " PythonMode {
+    " Disable if python support not present
         if !has('python')
-           let g:pymode = 1
+            let g:pymode = 1
         endif
-     " }
+    " }
 
-     " Fugitive {
+    " Fugitive {
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
         nnoremap <silent> <leader>gc :Gcommit<CR>
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>
         nnoremap <silent> <leader>gp :Git push<CR>
-     "}
+        nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
+        nnoremap <silent> <leader>gg :GitGutterToggle<CR>
+    "}
 
-     " UndoTree {
+    " UndoTree {
         nnoremap <Leader>u :UndotreeToggle<CR>
-        let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wants to interact with it.
-     " }
+        " If undotree is opened, it is likely one wants to interact with it.
+        let g:undotree_SetFocusWhenToggle=1
+    " }
 
     " clang complete {
         if exists("*g:ClangUpdateQuickFix")
@@ -422,96 +444,116 @@
 " }
 
 " GUI Settings {
+
     " GVIM- (here instead of .gvimrc)
     if has('gui_running')
         set guioptions=             " remove all gui options
         set lines=40                " 40 lines of text instead of 24,
         if has("gui_gtk2")
             set guifont=Andale\ Mono\ Regular\ 16,Menlo\ Regular\ 15,Consolas\ Regular\ 16,Courier\ New\ Regular\ 18
-        else
+        elseif has("gui_mac")
             set guifont=Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h18
+        elseif has("gui_win32")
+            set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
         endif
         if has('gui_macvim')
-            set transparency=5          " Make the window slightly transparent
+            set transparency=5      " Make the window slightly transparent
         endif
     else
         if &term == 'xterm' || &term == 'screen'
-            set t_Co=256                 " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
+            set t_Co=256            " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
         endif
         "set term=builtin_ansi       " Make arrow and other keys work
     endif
+
 " }
 
- " Functions {
+" Functions {
 
-function! UnBundle(arg, ...)
-  let bundle = vundle#config#init_bundle(a:arg, a:000)
-  call filter(g:bundles, 'v:val["name_spec"] != "' . a:arg . '"')
-endfunction
+    " UnBundle {
+    function! UnBundle(arg, ...)
+      let bundle = vundle#config#init_bundle(a:arg, a:000)
+      call filter(g:bundles, 'v:val["name_spec"] != "' . a:arg . '"')
+    endfunction
 
-com! -nargs=+         UnBundle
-\ call UnBundle(<args>)
+    com! -nargs=+         UnBundle
+    \ call UnBundle(<args>)
+    " }
 
-function! InitializeDirectories()
-    let separator = "."
-    let parent = $HOME
-    let prefix = '.vim'
-    let dir_list = {
-                \ 'backup': 'backupdir',
-                \ 'views': 'viewdir',
-                \ 'swap': 'directory' }
+    " Initialize directories {
+    function! InitializeDirectories()
+        let parent = $HOME
+        let prefix = 'vim'
+        let dir_list = {
+                    \ 'backup': 'backupdir',
+                    \ 'views': 'viewdir',
+                    \ 'swap': 'directory' }
 
-    if has('persistent_undo')
-        let dir_list['undo'] = 'undodir'
-    endif
-
-    for [dirname, settingname] in items(dir_list)
-        let directory = parent . '/' . prefix . dirname . "/"
-        if exists("*mkdir")
-            if !isdirectory(directory)
-                call mkdir(directory)
-            endif
+        if has('persistent_undo')
+            let dir_list['undo'] = 'undodir'
         endif
-        if !isdirectory(directory)
-            echo "Warning: Unable to create backup directory: " . directory
-            echo "Try: mkdir -p " . directory
+
+        " To specify a different directory in which to place the vimbackup,
+        " vimviews, vimundo, and vimswap files/directories, add the following to
+        " your .vimrc.local file:
+        "   let g:spf13_consolidated_directory = <full path to desired directory>
+        "   eg: let g:spf13_consolidated_directory = $HOME . '/.vim/'
+        if exists('g:spf13_consolidated_directory')
+            let common_dir = g:spf13_consolidated_directory . prefix
         else
-            let directory = substitute(directory, " ", "\\\\ ", "g")
-            exec "set " . settingname . "=" . directory
+            let common_dir = parent . '/.' . prefix
         endif
-    endfor
-endfunction
-call InitializeDirectories()
 
-function! NERDTreeInitAsNeeded()
-    redir => bufoutput
-    buffers!
-    redir END
-    let idx = stridx(bufoutput, "NERD_tree")
-    if idx > -1
-        NERDTreeMirror
-        NERDTreeFind
-        wincmd l
-    endif
-endfunction
+        for [dirname, settingname] in items(dir_list)
+            let directory = common_dir . dirname . '/'
+            if exists("*mkdir")
+                if !isdirectory(directory)
+                    call mkdir(directory)
+                endif
+            endif
+            if !isdirectory(directory)
+                echo "Warning: Unable to create backup directory: " . directory
+                echo "Try: mkdir -p " . directory
+            else
+                let directory = substitute(directory, " ", "\\\\ ", "g")
+                exec "set " . settingname . "=" . directory
+            endif
+        endfor
+    endfunction
+    " }
 
-" Strip whitespace
-function! StripTrailingWhitespace()
-    " To disable the stripping of whitespace, add the following to your
-    " .vimrc.local file:
-    "   let g:spf13_keep_trailing_whitespace = 1
-    if !exists('g:spf13_keep_trailing_whitespace')
-        " Preparation: save last search, and cursor position.
-        let _s=@/
-        let l = line(".")
-        let c = col(".")
-        " do the business:
-        %s/\s\+$//e
-        " clean up: restore previous search history, and cursor position
-        let @/=_s
-        call cursor(l, c)
-    endif
-endfunction
+    " Initialize NERDTree as needed {
+    function! NERDTreeInitAsNeeded()
+        redir => bufoutput
+        buffers!
+        redir END
+        let idx = stridx(bufoutput, "NERD_tree")
+        if idx > -1
+            NERDTreeMirror
+            NERDTreeFind
+            wincmd l
+        endif
+    endfunction
+    " }
+
+    " Strip whitespace {
+    function! StripTrailingWhitespace()
+        " To disable the stripping of whitespace, add the following to your
+        " .vimrc.local file:
+        "   let g:spf13_keep_trailing_whitespace = 1
+        if !exists('g:spf13_keep_trailing_whitespace')
+            " Preparation: save last search, and cursor position.
+            let _s=@/
+            let l = line(".")
+            let c = col(".")
+            " do the business:
+            %s/\s\+$//e
+            " clean up: restore previous search history, and cursor position
+            let @/=_s
+            call cursor(l, c)
+        endif
+    endfunction
+    " }
 
 " }
 
@@ -533,4 +575,8 @@ endfunction
             source ~/.gvimrc.local
         endif
     endif
+" }
+
+" Finish local initializations {
+    call InitializeDirectories()
 " }
