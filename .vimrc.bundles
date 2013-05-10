@@ -153,7 +153,7 @@
 
     " Javascript
         if count(g:spf13_bundle_groups, 'javascript')
-            Bundle 'leshill/vim-json'
+            Bundle 'elzr/vim-json'
             Bundle 'groenewege/vim-less'
             Bundle 'pangloss/vim-javascript'
             Bundle 'briancollins/vim-jst'
@@ -176,7 +176,7 @@
             Bundle 'juvenn/mustache.vim'
             Bundle 'mattn/zencoding-vim'
             Bundle 'nono/vim-handlebars'
-            Bundle 'digitaltoaad/vim-jade'
+            Bundle 'digitaltoad/vim-jade'
         endif
 
     " Ruby
