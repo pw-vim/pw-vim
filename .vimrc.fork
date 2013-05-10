@@ -145,6 +145,9 @@
         autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 ctermbg=235
         autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=237
 
+    " vitality
+        let g:vitality_fix_focus = 0
+
 " GUI Settings
     " GVIM- (here instead of .gvimrc)
         if has('gui_running')
