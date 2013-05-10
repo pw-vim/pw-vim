@@ -155,6 +155,7 @@
     " Remove trailing whitespaces and ^M chars
     autocmd FileType css,less,vm,vim,c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
+    autocmd FileType jade setlocal sw=2 sts=2 st=2
 " }
 
 " Key (re)Mappings {
@@ -411,7 +412,7 @@
     " }
 
     " syntastic {
-        let g:syntastic_javascript_jslint_conf = "--unparam --unused --browser --vars --nomen --indent 4 --plusplus --sloppy --predef define --predef window --predef location --predef history --predef location --predef document"
+        let g:syntastic_javascript_jslint_conf = "--unparam --unused --browser --vars --nomen --plusplus --sloppy --predef define --predef window --predef location --predef history --predef location --predef document --predef use --predef __"
         let g:syntastic_check_on_open = 1
         let g:syntastic_enable_signs = 0
         let g:syntastic_mode_map = { 'mode': 'passive',
@@ -423,7 +424,7 @@
 " GUI Settings {
     " GVIM- (here instead of .gvimrc)
     if has('gui_running')
-        set guioptions-=T           " remove the toolbar
+        set guioptions=             " remove all gui options
         set lines=40                " 40 lines of text instead of 24,
         if has("gui_gtk2")
             set guifont=Andale\ Mono\ Regular\ 16,Menlo\ Regular\ 15,Consolas\ Regular\ 16,Courier\ New\ Regular\ 18

@@ -151,6 +151,7 @@
             Bundle 'mattn/zencoding-vim'
             Bundle 'nono/vim-handlebars'
             Bundle 'beyondwords/vim-twig'
+            Bundle 'digitaltoaad/vim-jade'
         endif
     " }
 
