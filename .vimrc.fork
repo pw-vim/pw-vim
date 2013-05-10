@@ -13,6 +13,8 @@
     color molokai
     set scrolljump&
     set scrolloff&
+    set list
+    set listchars=tab:>-,trail:.,extends:>
 
 " Formatting
     set wrap&
