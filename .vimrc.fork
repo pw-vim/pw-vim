@@ -2,12 +2,13 @@
     set ambiwidth=double
     set fileencodings=ucs-bom,utf-8,gbk
     set fileformats=unix,dos,mac
-    set viewoptions-=options
+    set viewoptions-=options,cursor
     set spell&
     set noswapfile
     set wildignore+=*-target,target,tmp_*
     set clipboard&
     set timeoutlen=1000 ttimeoutlen=0
+    set backupskip=/tmp/*,/private/tmp/*
 
 " Vim UI
     color molokai
@@ -89,6 +90,8 @@
 " Plugins
     " NerdTree
         unmap <leader>e
+        unmap <C-e>
+        map <silent> <leader>nt :NERDTreeFind<CR>
         let NERDTreeIgnore = ['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.DS_Store']
         let NERDTreeQuitOnOpen = 0
         let NERDTreeShowHidden = 0
@@ -122,12 +125,9 @@
         let g:gist_open_browser_after_post = 1
 
     " syntastic
-        let g:syntastic_javascript_jslint_conf = "--unparam --unused --browser --vars --nomen --plusplus --sloppy --predef define --predef window --predef location --predef history --predef location --predef document --predef use --predef __"
-        let g:syntastic_check_on_open = 1
-        let g:syntastic_enable_signs = 0
-        let g:syntastic_mode_map = { 'mode': 'passive',
-                    \ 'active_filetypes': ['javascript'],
-                    \ 'passive_filetypes': [] }
+        let g:syntastic_mode_map = { 'mode': 'active',
+                    \ 'active_filetypes': [],
+                    \ 'passive_filetypes': ['html', 'java'] }
 
     " Ack
         nmap <F3> :Ack <C-R><C-W>
@@ -135,7 +135,7 @@
     " SnipMate
         " Setting the author var
         " If forking, please overwrite in your .vimrc.local file
-        let g:snips_author = 'pw <perfectworks@gmail.com>'
+        let g:snips_author = 'zhangyc <zhangyc@fenbi.com>'
 
         nmap <F9> :SnipMateOpenSnippetFiles<CR>
 
@@ -150,8 +150,26 @@
     " vitality
         let g:vitality_fix_focus = 0
 
+    " eclim
+        nmap <c-e>o :LocateFile<cr>
+        nmap <c-e>r :JavaRemove<cr>
+        nmap <c-e>m :JavaMove<cr>
+        nmap <c-e>l :ProjectRefresh<cr>
+        nmap <c-e>e :ProjectTreeToggle<cr>
+        let g:EclimLocateFileScope = 'workspace'
+        let g:EclimLocateFileDefaultAction = 'edit'
+
 " GUI Settings
     " GVIM- (here instead of .gvimrc)
         if has('gui_running')
             set guioptions=
         endif
+
+" Remove Bundle
+    UnBundle 'Lokaltog/vim-easymotion'
+    UnBundle 'vim-scripts/sessionman.vim'
+    UnBundle 'matchit.zip'
+    UnBundle 'jistr/vim-nerdtree-tabs'
+    UnBundle 'vim-scripts/restore_view.vim'
+    UnBundle 'flazz/vim-colorschemes'
+    UnBundle 'godlygeek/tabular'
