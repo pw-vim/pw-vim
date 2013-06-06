@@ -1,5 +1,4 @@
 " General
-    set ambiwidth=double
     set fileencodings=ucs-bom,utf-8,gbk
     set fileformats=unix,dos,mac
     set viewoptions-=options,cursor
@@ -16,6 +15,7 @@
     set scrolloff&
     set list
     set listchars=tab:>-,trail:.,extends:>
+    set ambiwidth=double
 
 " Formatting
     set wrap&
@@ -86,6 +86,9 @@
     " search very magic like perl default, and use g/ to search very no magic
     nnoremap g/ /\v
     nnoremap g? ?\v
+
+" OmniComplete
+    set completeopt-=preview
 
 " Plugins
     " NerdTree
@@ -166,6 +169,10 @@
         endif
 
 " Remove Bundle
+    UnBundle 'spf13/vim-preview'
+    UnBundle 'tpope/vim-cucumber'
+    UnBundle 'quentindecock/vim-cucumber-align-pipes'
+    UnBundle 'Puppet-Syntax-Highlighting'
     UnBundle 'Lokaltog/vim-easymotion'
     UnBundle 'vim-scripts/sessionman.vim'
     UnBundle 'matchit.zip'
@@ -173,3 +180,9 @@
     UnBundle 'vim-scripts/restore_view.vim'
     UnBundle 'flazz/vim-colorschemes'
     UnBundle 'godlygeek/tabular'
+    UnBundle 'altercation/vim-colors-solarized'
+    UnBundle 'spf13/vim-colors'
+    UnBundle 'spf13/vim-autoclose'
+    UnBundle 'godlygeek/csapprox'
+    UnBundle 'flazz/vim-colorschemes'
+

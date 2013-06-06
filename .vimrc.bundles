@@ -78,7 +78,10 @@
     " General
         if count(g:spf13_bundle_groups, 'general')
             Bundle 'scrooloose/nerdtree'
+            Bundle 'altercation/vim-colors-solarized'
+            Bundle 'spf13/vim-colors'
             Bundle 'tpope/vim-surround'
+            Bundle 'spf13/vim-autoclose'
             Bundle 'kien/ctrlp.vim'
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'
@@ -89,7 +92,9 @@
             endif
 
             Bundle 'Lokaltog/vim-easymotion'
+            Bundle 'godlygeek/csapprox'
             Bundle 'jistr/vim-nerdtree-tabs'
+            Bundle 'flazz/vim-colorschemes'
             Bundle 'mbbill/undotree'
             Bundle 'myusuf3/numbers.vim'
             Bundle 'nathanaelkane/vim-indent-guides'
@@ -98,12 +103,6 @@
             endif
             Bundle 'airblade/vim-gitgutter'
             Bundle 'tpope/vim-abolish.git'
-
-            Bundle 'cmdline-completion'
-            Bundle 'tomasr/molokai'
-            Bundle 'sjl/vitality.vim'
-            Bundle 'tyru/fencview.vim'
-            Bundle 'perfectworks/chdirectory'
         endif
 
     " General Programming
@@ -114,6 +113,7 @@
             Bundle 'mattn/webapi-vim'
             Bundle 'mattn/gist-vim'
             Bundle 'scrooloose/nerdcommenter'
+            Bundle 'godlygeek/tabular'
             if executable('ctags')
                 Bundle 'majutsushi/tagbar'
             endif
@@ -168,12 +168,6 @@
             Bundle 'amirh/HTML-AutoCloseTag'
             Bundle 'hail2u/vim-css3-syntax'
             Bundle 'tpope/vim-haml'
-
-            Bundle 'lepture/vim-velocity'
-            Bundle 'juvenn/mustache.vim'
-            Bundle 'mattn/zencoding-vim'
-            Bundle 'nono/vim-handlebars'
-            Bundle 'digitaltoad/vim-jade'
         endif
 
     " Ruby
@@ -193,18 +187,16 @@
     " Misc
         if count(g:spf13_bundle_groups, 'misc')
             Bundle 'tpope/vim-markdown'
-            Bundle 'parantapa/moin.vim'
+            Bundle 'spf13/vim-preview'
+            Bundle 'tpope/vim-cucumber'
+            Bundle 'quentindecock/vim-cucumber-align-pipes'
+            Bundle 'Puppet-Syntax-Highlighting'
         endif
 
 
     " Twig
         if count(g:spf13_bundle_groups, 'twig')
             Bundle 'beyondwords/vim-twig'
-        endif
-
-    " Fenbi.com
-        if count(g:spf13_bundle_groups, 'fenbi')
-            Bundle 'perfectworks/fenbi-frontend'
         endif
     endif
 " }

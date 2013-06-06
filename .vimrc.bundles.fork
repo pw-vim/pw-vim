@@ -4,3 +4,29 @@ let g:spf13_no_easyWindows = 1
 let g:spf13_no_autochdir = 1
 let g:spf13_no_indent_guides_autocolor = 1
 let g:spf13_no_views = 1
+
+" General
+    Bundle 'cmdline-completion'
+    Bundle 'tomasr/molokai'
+    Bundle 'sjl/vitality.vim'
+    Bundle 'tyru/fencview.vim'
+    Bundle 'perfectworks/chdirectory'
+
+" HTML
+    if count(g:spf13_bundle_groups, 'html')
+        Bundle 'lepture/vim-velocity'
+        Bundle 'juvenn/mustache.vim'
+        Bundle 'mattn/zencoding-vim'
+        Bundle 'nono/vim-handlebars'
+        Bundle 'digitaltoad/vim-jade'
+    endif
+
+" Misc
+    if count(g:spf13_bundle_groups, 'misc')
+        Bundle 'parantapa/moin.vim'
+    endif
+
+" Fenbi.com
+    if count(g:spf13_bundle_groups, 'fenbi')
+        Bundle 'perfectworks/fenbi-frontend'
+    endif
