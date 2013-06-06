@@ -16,6 +16,9 @@
     set list
     set listchars=tab:>-,trail:.,extends:>
     set ambiwidth=double
+    " Always show sign col
+    autocmd BufEnter * sign define dummy
+    autocmd BufEnter * execute 'sign place 99999 line=1 name=dummy buffer=' . bufnr('')
 
 " Formatting
     set wrap&
