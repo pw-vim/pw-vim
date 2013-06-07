@@ -188,3 +188,6 @@
     UnBundle 'spf13/vim-autoclose'
     UnBundle 'godlygeek/csapprox'
     UnBundle 'flazz/vim-colorschemes'
+    UnBundle 'briancollins/vim-jst'
+    UnBundle 'kchmck/vim-coffee-script'
+    UnBundle 'tpope/vim-haml'
