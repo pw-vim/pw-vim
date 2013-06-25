@@ -45,7 +45,7 @@
     nmap gD "_D
 
     " map double j to <esc>
-    imap <silent> jj <esc>
+    inoremap <silent> jj <esc>
 
     " Emacs style command line course move
     cmap <C-A> <Home>
@@ -131,6 +131,7 @@
         let g:gist_open_browser_after_post = 1
 
     " syntastic
+        let g:syntastic_check_on_wq = 0
         let g:syntastic_mode_map = { 'mode': 'active',
                     \ 'active_filetypes': [],
                     \ 'passive_filetypes': ['html', 'java'] }
@@ -192,3 +193,4 @@
     UnBundle 'kchmck/vim-coffee-script'
     UnBundle 'tpope/vim-haml'
     UnBundle 'tpope/vim-abolish.git'
+    UnBundle 'airblade/vim-gitgutter'
