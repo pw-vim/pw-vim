@@ -97,6 +97,8 @@
     set completeopt-=preview
 
 " Plugins
+    " Ack
+        let g:ackprg = 'ag --nogroup --nocolor --column --smart-case --literal'
     " NerdTree
         unmap <leader>e
         unmap <C-e>
