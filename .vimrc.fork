@@ -97,8 +97,9 @@
     set completeopt-=preview
 
 " Plugins
-    " Ack
-        let g:ackprg = 'ag --nogroup --nocolor --column --smart-case --literal'
+    " Tagbar
+        nnoremap <silent> <F11> :TagbarToggle<cr>
+
     " NerdTree
         unmap <leader>e
         unmap <C-e>
