@@ -11,6 +11,7 @@
     set clipboard&
     set timeoutlen=1000 ttimeoutlen=0
     set backupskip=/tmp/*,/private/tmp/*
+    set wildignorecase
 
 " Vim UI
     color molokai
@@ -164,11 +165,23 @@
         let g:vitality_fix_focus = 0
 
     " eclim
-        nmap <c-e>o :LocateFile<cr>
-        nmap <c-e>r :JavaRemove<cr>
-        nmap <c-e>m :JavaMove<cr>
-        nmap <c-e>l :ProjectRefresh<cr>
-        nmap <c-e>e :ProjectTreeToggle<cr>
+        noremap <c-j>p :LocateFile<cr>
+        noremap <c-j>l :ProjectRefresh<cr>
+        noremap <c-j>e :ProjectTreeToggle<cr>
+        noremap <c-j>c :JavaCorrect<cr>
+        noremap <c-j>o :JavaImportOrganize<cr>
+        noremap <c-j>r :JavaRename <c-r><c-w>
+        noremap <c-j>m :JavaMove<cr>
+        noremap <c-j>h :JavaHierarchy<cr>
+        noremap <c-j>c :JavaCallHierarchy<cr>
+        noremap <c-j>i :JavaImpl<cr>
+        nnoremap <c-j>f :%JavaFormat<cr>
+        vnoremap <c-j>f :JavaFormat<cr>
+        noremap <c-j>uf :JUnitFindTest<cr>
+        noremap <c-j>ui :JUnitImpl<cr>
+        noremap <c-j>ut :JUnit<cr>
+        noremap <c-j>ur :JUnitResult<cr>
+
         let g:EclimLocateFileScope = 'workspace'
         let g:EclimLocateFileDefaultAction = 'edit'
 
