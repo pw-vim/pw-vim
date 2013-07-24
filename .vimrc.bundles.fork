@@ -15,6 +15,8 @@ let g:spf13_no_views = 1
     Bundle 'sjl/vitality.vim'
     Bundle 'tyru/fencview.vim'
     Bundle 'perfectworks/chdirectory'
+    Bundle 'Shougo/unite.vim'
+    Bundle 'Shougo/vimproc.vim'
 
 " HTML
     if count(g:spf13_bundle_groups, 'html')
