@@ -56,4 +56,5 @@ echo "update/install plugins using Vundle"
 system_shell=$SHELL
 export SHELL="/bin/sh"
 vim -u $endpath/.vimrc.bundles +BundleInstall! +BundleClean +qall
+(cd $HOME/.vim/bundle/vimproc.vim && make)
 export SHELL=$system_shell
