@@ -35,7 +35,7 @@ After installation try running `git --version` within _command prompt_ (press Wi
 #### Setup [Curl]
 _Instructions blatently copied from vundle readme_
 Installing Curl on Windows is easy as [Curl] is bundled with [msysgit]!
-But before it can be used with [Vundle] it's required make `curl` run in _command prompt_.
+But before it can be used with [NeoBundle] it's required make `curl` run in _command prompt_.
 The easiest way is to create `curl.cmd` with [this content](https://gist.github.com/912993)
 
     @rem Do not use "echo off" to not affect any child calls.
@@ -80,7 +80,7 @@ Alternatively you can manually perform the following steps. If anything has chan
 ```bash
     cd $HOME/to/pw-vim/
     git pull
-    vim +BundleInstall! +BundleClean +q
+    vim +NeoBundleInstall! +NeoBundleClean +q
 ```
 
 ## Customization
@@ -125,23 +125,23 @@ Create `~/.vimrc.bundles.local` for any additional bundles.
 To add a new bundle
 
 ```bash
-    echo Bundle \'spf13/vim-colors\' >> ~/.vimrc.bundles.local
+    echo NeoBundle \'spf13/vim-colors\' >> ~/.vimrc.bundles.local
 ```
 
 ## Removing (disabling) an included plugin
 
 Create `~/.vimrc.local` if it doesn't already exist.
 
-Add the UnBundle command to this line. It takes the same input as the Bundle line, so simply copy the line you want to disable and add 'Un' to the beginning.
+Add the NeoBundleDisable command to this line. It takes the same input as the Bundle line, so simply copy the line you want to disable and add 'Un' to the beginning.
 
 For example, disabling the 'AutoClose' and 'scrooloose/syntastic' plugins
 
 ```bash
-    echo UnBundle \'AutoClose\' >> ~/.vimrc.local
-    echo UnBundle \'scrooloose/syntastic\' >> ~/.vimrc.local
+    echo NeoBundleDisable \'AutoClose\' >> ~/.vimrc.local
+    echo NeoBundleDisable \'scrooloose/syntastic\' >> ~/.vimrc.local
 ```
 
-**Remember to run ':BundleClean!' after this to remove the existing directories**
+**Remember to run ':NeoBundleClean!' after this to remove the existing directories**
 
 # Difference betweet pw-vim and [spf13-vim]
 
@@ -186,7 +186,7 @@ I'm always happy to take pull requests from others. Go ahead and fork me.
 [spf13-vim]:https://github.com/spf13/spf13-vim
 [contributors]:https://github.com/spf13/spf13-vim/contributors
 
-[Vundle]:https://github.com/gmarik/vundle
+[NeoBundle]:https://github.com/Shougo/neobundle.vim
 [PIV]:https://github.com/spf13/PIV
 [NERDCommenter]:https://github.com/scrooloose/nerdcommenter
 [Undotree]:https://github.com/mbbill/undotree

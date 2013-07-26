@@ -10,29 +10,29 @@ let g:spf13_no_indent_guides_autocolor = 1
 let g:spf13_no_views = 1
 
 " General
-    Bundle 'cmdline-completion'
-    Bundle 'tomasr/molokai'
-    Bundle 'sjl/vitality.vim'
-    Bundle 'tyru/fencview.vim'
-    Bundle 'perfectworks/chdirectory'
-    Bundle 'Shougo/unite.vim'
-    Bundle 'Shougo/vimproc.vim'
+    NeoBundle 'cmdline-completion'
+    NeoBundle 'tomasr/molokai'
+    NeoBundle 'sjl/vitality.vim'
+    NeoBundle 'tyru/fencview.vim'
+    NeoBundle 'perfectworks/chdirectory'
+    NeoBundle 'Shougo/unite.vim'
+    NeoBundle 'Shougo/vimproc.vim'
 
 " HTML
     if count(g:spf13_bundle_groups, 'html')
-        Bundle 'lepture/vim-velocity'
-        Bundle 'juvenn/mustache.vim'
-        Bundle 'mattn/zencoding-vim'
-        Bundle 'nono/vim-handlebars'
-        Bundle 'digitaltoad/vim-jade'
+        NeoBundle 'lepture/vim-velocity'
+        NeoBundle 'juvenn/mustache.vim'
+        NeoBundle 'mattn/zencoding-vim'
+        NeoBundle 'nono/vim-handlebars'
+        NeoBundle 'digitaltoad/vim-jade'
     endif
 
 " Misc
     if count(g:spf13_bundle_groups, 'misc')
-        Bundle 'parantapa/moin.vim'
+        NeoBundle 'parantapa/moin.vim'
     endif
 
 " Fenbi.com
     if count(g:spf13_bundle_groups, 'fenbi')
-        Bundle 'perfectworks/fenbi-frontend'
+        NeoBundle 'perfectworks/fenbi-frontend'
     endif
