@@ -15,7 +15,7 @@
     set nomore
 
 " Vim UI
-    let g:molokai_original = 1
+    let g:rehash256 = 1
     color molokai
     set scrolljump&
     set scrolloff&
@@ -210,11 +210,13 @@
         let g:EclimLocateFileDefaultAction = 'edit'
 
     " airline
+        let g:airline_branch_prefix = '⎇ '
         let g:airline_powerline_fonts = 1
         let g:airline_left_sep = ''
         let g:airline_right_sep = ''
         let g:airline_linecolumn_prefix = '␊ '
         let g:airline_paste_symbol = 'Þ'
+        let g:airline_theme='molokai'
 
 " GUI Settings
     " GVIM- (here instead of .gvimrc)
