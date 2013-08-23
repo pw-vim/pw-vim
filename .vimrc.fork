@@ -4,7 +4,7 @@
 " General
     set fileencodings=ucs-bom,utf-8,gbk
     set fileformats=unix,dos,mac
-    set viewoptions-=options,cursor
+    set viewoptions-=options
     set spell&
     set noswapfile
     set wildignore+=*-target,target,tmp_*
@@ -106,6 +106,45 @@
     " NeoBundle
         let g:neobundle#types#git#default_protocol = 'git'
 
+    " NeoComplete
+        if count(g:spf13_bundle_groups, 'neocomplete')
+            if !exists('g:neocomplete#same_filetypes')
+                let g:neocomplete#same_filetypes = {}
+            endif
+            let g:neocomplete#same_filetypes.js = 'js'
+            let g:neocomplete#same_filetypes.handlebars = 'handlebars'
+            let g:neocomplete#same_filetypes.less = 'less,css'
+            let g:neocomplete#same_filetypes.vm = 'vm'
+            let g:neocomplete#use_vimproc = 1
+            let g:neocomplete#disable_auto_complete = 1
+            let g:neosnippet#enable_snipmate_compatibility = 0
+            let g:neocomplete#enable_smart_case = 0
+            let g:snips_author = 'zhangyc <zhangyc@fenbi.com>'
+
+            if !exists('g:neocomplete#sources#file_include#exts')
+                let g:neocomplete#sources#file_include#exts = {}
+            endif
+            let g:neocomplete#sources#file_include#exts.less = ['less', 'css']
+            let g:neocomplete#sources#file_include#exts.javascript = ['js']
+
+            if !exists('g:neocomplete#sources#file_include#exprs')
+                let g:neocomplete#sources#file_include#exprs = {}
+            endif
+            let g:neocomplete#sources#file_include#exprs.javascript = 'fnamemodify(substitute(v:fname, "/", "::", "g"), ":r")'
+
+            if count(g:spf13_bundle_groups, 'fenbi')
+                let g:neosnippet#snippets_directory='~/.vim/bundle/fenbi-frontend/snippets'
+            endif
+
+            inoremap <expr><c-n> pumvisible() ? "\<C-n>" : neocomplete#start_manual_complete()
+            inoremap <silent><expr><TAB> neosnippet#jumpable() ? neosnippet#jump_impl() :
+                        \ (neosnippet#expandable() ? neosnippet#expand_impl() :
+                        \ (pumvisible() ? "\<C-n>" : "\<TAB>"))
+            iunmap <C-y>
+
+            cabbrev nss NeoSnippetEdit -split
+        endif
+
     " Tagbar
         nnoremap <silent> <F11> :TagbarToggle<cr>
 
@@ -145,9 +184,7 @@
         nnoremap <silent> <leader>* :UniteWithCursorWord grep<cr>
 
         let g:unite_source_history_yank_enable = 1
-        imap <c-g>y :Unite history/yank<cr>
         nmap <leader>y :Unite history/yank<cr>
-        autocmd Filetype unite imap <buffer> <esc> <Plug>(unite_exit)
 
         nmap <f1> :Unite -start-insert help<cr>
 
@@ -171,15 +208,8 @@
                     \ 'active_filetypes': [],
                     \ 'passive_filetypes': ['html', 'java'] }
 
-    " SnipMate
-        " Setting the author var
-        " If forking, please overwrite in your .vimrc.local file
-        let g:snips_author = 'zhangyc <zhangyc@fenbi.com>'
-
-        nmap <F9> :SnipMateOpenSnippetFiles<CR>
-
-    " ZenCoding
-       let g:user_zen_leader_key = '<c-k>'
+    " Emmet
+       let g:user_emmet_leader_key = '<c-k>'
 
     " Indent guides
         let g:indent_guides_auto_colors = 0
@@ -216,6 +246,9 @@
         let g:airline_right_sep = ''
         let g:airline_linecolumn_prefix = '␊ '
         let g:airline_paste_symbol = 'Þ'
+
+    " surround
+        let g:surround_no_insert_mappings = 1
 
 " GUI Settings
     " GVIM- (here instead of .gvimrc)
