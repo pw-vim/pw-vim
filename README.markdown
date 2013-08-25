@@ -147,6 +147,7 @@ For example, disabling the 'AutoClose' and 'scrooloose/syntastic' plugins
 
 Main changes:
 
+* Use [Unite] instead [ctrlp].
 * Map `jj` to `<ESC>`.
 * Add block search support.
 * Map `<F7>` and `<F8>` to jump in `location-list`.
@@ -154,7 +155,6 @@ Main changes:
 * Use my favorite color theme [molokai] instead [solarized].
 * Remove a dozen language support plugins such like ruby, scala, twig, cucumber.
 * Remove some useless plugin: [neocomplcache], [tagbar], [Syntastic].
-* Add a new bundle group `fenbi` for my team.
 * Reset some Vim settings to default:
     * Unbind vim register and system clipboard.
     * Remove `options` from `viewoptions`.
@@ -166,6 +166,7 @@ Main changes:
     * Unmap `<C-J>`, `<C-K>`, `<C-L>`, `<C-H>`.
     * Unmap `<` and `>`.
     * Unmap `j`/`k`.
+* Add a new bundle group `fenbi` for my team.
 
 The reason is very simple: I don't need them.
 
@@ -202,6 +203,9 @@ I'm always happy to take pull requests from others. Go ahead and fork me.
 [Matchit]:http://www.vim.org/scripts/script.php?script_id=39
 [Tabularize]:https://github.com/godlygeek/tabular
 [EasyMotion]:https://github.com/Lokaltog/vim-easymotion
+[Airline]:https://github.com/bling/vim-airline
+[Powerline]:https://github.com/lokaltog/powerline
+[Powerline Fonts]:https://github.com/Lokaltog/powerline-fonts
 
 [spf13-vim-img]:https://i.imgur.com/UKToY.png
 [spf13-vimrc-img]:https://i.imgur.com/kZWj1.png
@@ -211,3 +215,4 @@ I'm always happy to take pull requests from others. Go ahead and fork me.
 [nerdtree-img]:https://i.imgur.com/9xIfu.png
 [phpmanual-img]:https://i.imgur.com/c0GGP.png
 [easymotion-img]:https://i.imgur.com/ZsrVL.png
+[airline-img]:https://i.imgur.com/sU0PG5P.png
