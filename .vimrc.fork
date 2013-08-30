@@ -9,7 +9,9 @@
     set noswapfile
     set wildignore+=*-target,target,tmp_*
     set clipboard&
-    set timeoutlen=1000 ttimeoutlen=0
+    set timeout
+    set timeoutlen=300
+    set ttimeoutlen=0
     set backupskip=/tmp/*,/private/tmp/*
     set wildignorecase
     set nomore
@@ -39,9 +41,14 @@
     vunmap >
 
     unmap [F
-    iunmap [F
     unmap [H
+    iunmap [F
     iunmap [H
+
+    set t_ku=OA
+    set t_kd=OB
+    set t_kr=OC
+    set t_kl=OD
 
     " Paste yank register
     nmap gp "0p
@@ -240,6 +247,10 @@
         let g:EclimLocateFileScope = 'workspace'
         let g:EclimLocateFileDefaultAction = 'edit'
 
+        autocmd FileType locate_prompt inoremap <buffer> <c-g> <esc>
+        autocmd FileType locate_prompt imap <buffer> <c-n> <tab>
+        autocmd FileType locate_prompt imap <buffer> <c-p> <s-tab>
+
     " airline
         let g:airline_branch_prefix = '⎇ '
         let g:airline_left_sep = ''
@@ -263,9 +274,9 @@
     UnBundle 'Puppet-Syntax-Highlighting'
     UnBundle 'Lokaltog/vim-easymotion'
     UnBundle 'vim-scripts/sessionman.vim'
+    UnBundle 'terryma/vim-multiple-cursors'
     UnBundle 'matchit.zip'
     UnBundle 'jistr/vim-nerdtree-tabs'
-    UnBundle 'vim-scripts/restore_view.vim'
     UnBundle 'flazz/vim-colorschemes'
     UnBundle 'godlygeek/tabular'
     UnBundle 'altercation/vim-colors-solarized'
@@ -279,3 +290,4 @@
     UnBundle 'airblade/vim-gitgutter'
     UnBundle 'kien/ctrlp.vim'
     UnBundle 'mileszs/ack.vim'
+    UnBundle 'myusuf3/numbers.vim'
