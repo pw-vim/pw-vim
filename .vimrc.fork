@@ -224,29 +224,27 @@
         let g:vitality_fix_focus = 0
 
     " eclim
-        noremap <c-j>p :LocateFile<cr>
-        noremap <c-j>l :ProjectRefresh<cr>
-        noremap <c-j>e :ProjectTreeToggle<cr>
-        noremap <c-j>c :JavaCorrect<cr>
-        noremap <c-j>o :JavaImportOrganize<cr>
-        noremap <c-j>r :JavaRename <c-r><c-w>
-        noremap <c-j>m :JavaMove<cr>
-        noremap <c-j>h :JavaHierarchy<cr>
-        noremap <c-j>c :JavaCallHierarchy<cr>
-        noremap <c-j>i :JavaImpl<cr>
-        nnoremap <c-j>f :%JavaFormat<cr>
-        vnoremap <c-j>f :JavaFormat<cr>
-        noremap <c-j>uf :JUnitFindTest<cr>
-        noremap <c-j>ui :JUnitImpl<cr>
-        noremap <c-j>ut :JUnit<cr>
-        noremap <c-j>ur :JUnitResult<cr>
+        if count(g:spf13_bundle_groups, 'eclim')
+            call unite#custom#source('eclim', 'converters',['converter_relative_word'])
+            call unite#custom#source('eclim', 'sorters', ['sorter_ftime', 'sorter_rank'])
+            nnoremap <silent> <C-p> :Unite -start-insert file_rec/async file_mru eclim<cr>
 
-        let g:EclimLocateFileScope = 'workspace'
-        let g:EclimLocateFileDefaultAction = 'edit'
-
-        autocmd FileType locate_prompt inoremap <buffer> <c-g> <esc>
-        autocmd FileType locate_prompt imap <buffer> <c-n> <tab>
-        autocmd FileType locate_prompt imap <buffer> <c-p> <s-tab>
+            noremap <c-j>l :ProjectRefresh<cr>
+            noremap <c-j>e :ProjectTreeToggle<cr>
+            noremap <c-j>c :JavaCorrect<cr>
+            noremap <c-j>o :JavaImportOrganize<cr>
+            noremap <c-j>r :JavaRename <c-r><c-w>
+            noremap <c-j>m :JavaMove<cr>
+            noremap <c-j>h :JavaHierarchy<cr>
+            noremap <c-j>c :JavaCallHierarchy<cr>
+            noremap <c-j>i :JavaImpl<cr>
+            nnoremap <c-j>f :%JavaFormat<cr>
+            vnoremap <c-j>f :JavaFormat<cr>
+            noremap <c-j>uf :JUnitFindTest<cr>
+            noremap <c-j>ui :JUnitImpl<cr>
+            noremap <c-j>ut :JUnit<cr>
+            noremap <c-j>ur :JUnitResult<cr>
+        endif
 
     " airline
         let g:airline_branch_prefix = '⎇ '
