@@ -17,6 +17,7 @@ let g:spf13_no_views = 1
     Bundle 'tyru/fencview.vim'
     Bundle 'perfectworks/chdirectory'
     Bundle 'terryma/vim-multiple-cursors'
+    Bundle 'tpope/vim-repeat'
     Bundle 'Shougo/unite.vim'
     Bundle 'Shougo/vimproc', {
     \ 'build' : {
