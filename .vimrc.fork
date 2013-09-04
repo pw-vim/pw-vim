@@ -6,6 +6,7 @@
     set fileformats=unix,dos,mac
     set viewoptions-=options
     set spell&
+    set rnu
     set noswapfile
     set wildignore+=*-target,target,tmp_*
     set clipboard&
@@ -63,8 +64,8 @@
     inoremap <silent> jj <esc>
 
     " Emacs style command line course move
-    cmap <C-A> <Home>
-    cmap <C-E> <End>
+    cnoremap <C-A> <Home>
+    cnoremap <C-E> <End>
 
     " Visual block search
     function! VisualSearch(direction) range
@@ -119,6 +120,7 @@
             if !exists('g:neocomplete#same_filetypes')
                 let g:neocomplete#same_filetypes = {}
             endif
+            let g:neocomplete#enable_fuzzy_completion = 0
             let g:neocomplete#same_filetypes.js = 'js'
             let g:neocomplete#same_filetypes.handlebars = 'handlebars'
             let g:neocomplete#same_filetypes.less = 'less,css'
