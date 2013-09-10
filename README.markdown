@@ -97,12 +97,14 @@ For example, to override the default color schemes:
 ### Before File
 
 Create a `~/.vimrc.before.local` file to define any customizations
-that get loaded *before* the spf-13 `.vimrc`.
+that get loaded *before* the spf13-vim `.vimrc`.
 
 For example, to prevent autocd into a file directory:
 ```bash
     echo let g:spf13_no_autochdir = 1 >> ~/.vimrc.before.local
 ```
+For a list of available spf13-vim specific customization options, look at the `~/.vimrc.before` file.
+
 
 ### Fork Customization
 
@@ -119,7 +121,7 @@ and `.vimrc.bundles.fork` files in the root of their fork.  The load order for t
 7. `.vimrc.fork` - fork vim configuration
 8. `.vimrc.local` - local user configuration
 
-See `.vimrc.bundles` for specifics on what options can be set to override bundle configuration. See `.vimrc` for specifics
+See `.vimrc.bundles` for specifics on what options can be set to override bundle configuration. See `.vimrc.before` for specifics
 on what options can be overridden. Most vim configuration options should be set in your `.vimrc.fork` file, bundle configuration
 needs to be set in your `.vimrc.bundles.fork` file.
 
@@ -227,4 +229,4 @@ I'm always happy to take pull requests from others. Go ahead and fork me.
 [nerdtree-img]:https://i.imgur.com/9xIfu.png
 [phpmanual-img]:https://i.imgur.com/c0GGP.png
 [easymotion-img]:https://i.imgur.com/ZsrVL.png
-[airline-img]:https://i.imgur.com/sU0PG5P.png
+[airline-img]:https://i.imgur.com/D4ZYADr.png

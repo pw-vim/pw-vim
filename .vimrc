@@ -134,6 +134,24 @@
     " set it to the first line when editing a git commit message
     au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
+    " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
+    " Restore cursor to file position in previous editing session
+    " To disable this, add the following to your .vimrc.before.local file:
+    "   let g:spf13_no_restore_cursor = 1
+    if !exists('g:spf13_no_restore_cursor')
+        function! ResCur()
+            if line("'\"") <= line("$")
+                normal! g`"
+                return 1
+            endif
+        endfunction
+
+        augroup resCur
+            autocmd!
+            autocmd BufWinEnter * call ResCur()
+        augroup END
+    endif
+
     " Setting up the directories {
         set backup                  " Backups are nice ...
         if has('persistent_undo')
@@ -159,11 +177,12 @@
 
     if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
         let g:solarized_termcolors=256
-        color solarized                 " Load a colorscheme
-    endif
         let g:solarized_termtrans=1
         let g:solarized_contrast="high"
         let g:solarized_visibility="high"
+        color solarized             " Load a colorscheme
+    endif
+
     set tabpagemax=15               " Only show 15 tabs
     set showmode                    " Display the current mode
 
@@ -174,7 +193,7 @@
 
     highlight clear LineNr          " Current line number row will have same background color in relative mode.
                                     " Things like vim-gitgutter will match LineNr highlight
-    "highlight clear CursorLineNr   " Remove highlight color from current line number
+    "highlight clear CursorLineNr    " Remove highlight color from current line number
 
     if has('cmdline_info')
         set ruler                   " Show the ruler
@@ -259,9 +278,9 @@
 
     " Easier moving in tabs and windows
     " The lines conflict with the default digraph mapping of <C-K>
-    " If you prefer that functionality, add let g:spf13_no_easyWindows = 1
-    " in your .vimrc.before.local file
-
+    " If you prefer that functionality, add the following to your
+    " .vimrc.before.local file:
+    "   let g:spf13_no_easyWindows = 1
     if !exists('g:spf13_no_easyWindows')
         map <C-J> <C-W>j<C-W>_
         map <C-K> <C-W>k<C-W>_
@@ -315,8 +334,16 @@
     nmap <leader>f8 :set foldlevel=8<CR>
     nmap <leader>f9 :set foldlevel=9<CR>
 
-    " Toggle search highlighting
-    nmap <silent> <leader>/ :set invhlsearch<CR>
+    " Most prefer to toggle search highlighting rather than clear the current
+    " search results. To clear search highlighting rather than toggle it on
+    " and off, add the following to your .vimrc.before.local file:
+    "   let g:spf13_clear_search_highlight = 1
+    if exists('g:spf13_clear_search_highlight')
+        nmap <silent> <leader>/ :nohlsearch<CR>
+    else
+        nmap <silent> <leader>/ :set invhlsearch<CR>
+    endif
+
 
     " Find merge conflict markers
     map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
@@ -518,7 +545,7 @@
     "}
 
     " PythonMode {
-    " Disable if python support not present
+        " Disable if python support not present
         if !has('python')
             let g:pymode = 1
         endif
@@ -565,34 +592,33 @@
             endif
             let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-            " Plugin key-mappings.
+            " Plugin key-mappings {
+                " These two lines conflict with the default digraph mapping of <C-K>
+                " If you prefer that functionality, add the following to your
+                " .vimrc.before.local file:
+                "   let g:spf13_no_neosnippet_expand = 1
+                if !exists('g:spf13_no_neosnippet_expand')
+                    imap <C-k> <Plug>(neosnippet_expand_or_jump)
+                    smap <C-k> <Plug>(neosnippet_expand_or_jump)
+                endif
 
-            " These two lines conflict with the default digraph mapping of <C-K>
-            " If you prefer that functionality, add
-            " let g:spf13_no_neosnippet_expand = 1
-            " in your .vimrc.before.local file
+                inoremap <expr><C-g> neocomplete#undo_completion()
+                inoremap <expr><C-l> neocomplete#complete_common_string()
+                inoremap <expr><CR> neocomplete#complete_common_string()
 
-            if !exists('g:spf13_no_neosnippet_expand')
-                imap <C-k> <Plug>(neosnippet_expand_or_jump)
-                smap <C-k> <Plug>(neosnippet_expand_or_jump)
-            endif
+                " <TAB>: completion.
+                inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+                inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
-            inoremap <expr><C-g> neocomplete#undo_completion()
-            inoremap <expr><C-l> neocomplete#complete_common_string()
-            inoremap <expr><CR> neocomplete#complete_common_string()
+                " <CR>: close popup
+                " <s-CR>: close popup and save indent.
+                inoremap <expr><s-CR> pumvisible() ? neocomplete#close_popup()"\<CR>" : "\<CR>"
+                inoremap <expr><CR> pumvisible() ? neocomplete#close_popup() : "\<CR>"
 
-            " <TAB>: completion.
-            inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-            inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-            " <CR>: close popup
-            " <s-CR>: close popup and save indent.
-            inoremap <expr><s-CR> pumvisible() ? neocomplete#close_popup()"\<CR>" : "\<CR>"
-            inoremap <expr><CR> pumvisible() ? neocomplete#close_popup() : "\<CR>"
-
-            " <C-h>, <BS>: close popup and delete backword char.
-            inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-            inoremap <expr><C-y> neocomplete#close_popup()
+                " <C-h>, <BS>: close popup and delete backword char.
+                inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+                inoremap <expr><C-y> neocomplete#close_popup()
+            " }
 
             " Enable omni completion.
             autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -668,34 +694,33 @@
             endif
             let g:neocomplcache_keyword_patterns._ = '\h\w*'
 
-            " Plugin key-mappings.
+            " Plugin key-mappings {
+                " These two lines conflict with the default digraph mapping of <C-K>
+                " If you prefer that functionality, add the following to your
+                " .vimrc.before.local file:
+                "   let g:spf13_no_neosnippet_expand = 1
+                if !exists('g:spf13_no_neosnippet_expand')
+                    imap <C-k> <Plug>(neosnippet_expand_or_jump)
+                    smap <C-k> <Plug>(neosnippet_expand_or_jump)
+                endif
 
-            " These two lines conflict with the default digraph mapping of <C-K>
-            " If you prefer that functionality, add
-            " let g:spf13_no_neosnippet_expand = 1
-            " in your .vimrc.before.local file
+                inoremap <expr><C-g> neocomplcache#undo_completion()
+                inoremap <expr><C-l> neocomplcache#complete_common_string()
+                inoremap <expr><CR> neocomplcache#complete_common_string()
 
-            if !exists('g:spf13_no_neosnippet_expand')
-                imap <C-k> <Plug>(neosnippet_expand_or_jump)
-                smap <C-k> <Plug>(neosnippet_expand_or_jump)
-            endif
+                " <TAB>: completion.
+                inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+                inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
-            inoremap <expr><C-g> neocomplcache#undo_completion()
-            inoremap <expr><C-l> neocomplcache#complete_common_string()
-            inoremap <expr><CR> neocomplcache#complete_common_string()
+                " <CR>: close popup
+                " <s-CR>: close popup and save indent.
+                inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
+                inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 
-            " <TAB>: completion.
-            inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-            inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-            " <CR>: close popup
-            " <s-CR>: close popup and save indent.
-            inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-            inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-
-            " <C-h>, <BS>: close popup and delete backword char.
-            inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-            inoremap <expr><C-y> neocomplcache#close_popup()
+                " <C-h>, <BS>: close popup and delete backword char.
+                inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+                inoremap <expr><C-y> neocomplcache#close_popup()
+            " }
 
             " Enable omni completion.
             autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -760,11 +785,19 @@
         let g:indent_guides_enable_on_vim_startup = 1
     " }
 
-    " airline {
-        let g:airline_theme='powerlineish'      " airline users use the powerline theme
+    " vim-airline {
+        " Set configuration options for the statusline plugin vim-airline.
+        " Use the powerline theme and optionally enable powerline symbols.
+        " To use the symbols , , , , , , and .in the statusline
+        " segments add the following to your .vimrc.before.local file:
+        "   let g:airline_powerline_fonts=1
+        " If the previous symbols do not render for you then install a
+        " powerline enabled font.
+        let g:airline_theme = 'powerlineish'
         if !exists('g:airline_powerline_fonts')
-          let g:airline_left_sep='›'              " Slightly fancier separator, instead of '>'
-          let g:airline_right_sep='‹'             " Slightly fancier separator, instead of '<'
+            " Use the default set of separators with a few customizations
+            let g:airline_left_sep='›'  " Slightly fancier than '>'
+            let g:airline_right_sep='‹' " Slightly fancier than '<'
         endif
     " }
 
@@ -827,7 +860,7 @@
 
         " To specify a different directory in which to place the vimbackup,
         " vimviews, vimundo, and vimswap files/directories, add the following to
-        " your .vimrc.local file:
+        " your .vimrc.before.local file:
         "   let g:spf13_consolidated_directory = <full path to desired directory>
         "   eg: let g:spf13_consolidated_directory = $HOME . '/.vim/'
         if exists('g:spf13_consolidated_directory')
@@ -852,6 +885,7 @@
             endif
         endfor
     endfunction
+    call InitializeDirectories()
     " }
 
     " Initialize NERDTree as needed {
@@ -871,7 +905,7 @@
     " Strip whitespace {
     function! StripTrailingWhitespace()
         " To disable the stripping of whitespace, add the following to your
-        " .vimrc.local file:
+        " .vimrc.before.local file:
         "   let g:spf13_keep_trailing_whitespace = 1
         if !exists('g:spf13_keep_trailing_whitespace')
             " Preparation: save last search, and cursor position.
@@ -930,8 +964,4 @@
             source ~/.gvimrc.local
         endif
     endif
-" }
-
-" Finish local initializations {
-    call InitializeDirectories()
 " }
