@@ -1,0 +1,7 @@
+let g:spf13_no_neosnippet_expand = 1
+let g:spf13_no_keyfixes = 1
+let g:spf13_no_fastTabs = 1
+let g:spf13_no_easyWindows = 1
+let g:spf13_no_autochdir = 1
+let g:spf13_no_indent_guides_autocolor = 1
+let g:spf13_no_views = 1
