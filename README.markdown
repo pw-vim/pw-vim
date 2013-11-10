@@ -163,12 +163,9 @@ Main changes:
 
 * Use [Unite] instead [ctrlp].
 * Map `jj` to `<ESC>`.
-* Add block search support.
-* Map `<F7>` and `<F8>` to jump in `location-list`.
 * Swap `0` and `^`, `0` is more convenience.
 * Use my favorite color theme [molokai] instead [solarized].
 * Remove a dozen language support plugins such like ruby, scala, twig, cucumber.
-* Remove some useless plugin: [neocomplcache], [tagbar], [Syntastic].
 * Reset some Vim settings to default:
     * Unbind vim register and system clipboard.
     * Remove `options` from `viewoptions`.
