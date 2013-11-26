@@ -52,6 +52,7 @@
     unmap <Home>
     unmap ^
     unmap 0
+    unmap <F11>
 
     set t_ku=OA
     set t_kd=OB
@@ -225,6 +226,7 @@
         endif
 
     " airline
+        let g:airline_theme = 'powerlineish'
         let g:airline_branch_prefix = '⎇ '
         let g:airline_left_sep = ''
         let g:airline_right_sep = ''
