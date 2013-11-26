@@ -163,11 +163,8 @@
 
     set cursorline                  " Highlight current line
 
-    highlight clear SignColumn      " SignColumn should match background for
-                                    " things like vim-gitgutter
-
-    highlight clear LineNr          " Current line number row will have same background color in relative mode.
-                                    " Things like vim-gitgutter will match LineNr highlight
+    highlight clear SignColumn      " SignColumn should match background
+    highlight clear LineNr          " Current line number row will have same background color in relative mode
     "highlight clear CursorLineNr    " Remove highlight color from current line number
 
     if has('cmdline_info')
@@ -375,6 +372,9 @@
     map zl zL
     map zh zH
 
+    " fullscreen mode for GVIM and Terminal, need 'wmctrl' in you PATH
+    map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
+
 " }
 
 " Plugins {
@@ -545,10 +545,10 @@
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>
         nnoremap <silent> <leader>gp :Git push<CR>
-        nnoremap <silent> <leader>gr :Gread<CR>:GitGutter<CR>
-        nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
+        nnoremap <silent> <leader>gr :Gread<CR>
+        nnoremap <silent> <leader>gw :Gwrite<CR>
         nnoremap <silent> <leader>ge :Gedit<CR>
-        nnoremap <silent> <leader>gg :GitGutterToggle<CR>
+        nnoremap <silent> <leader>gg :SignifyToggle<CR>
     "}
 
     " neocomplete {
@@ -780,17 +780,12 @@
         "   let g:airline_powerline_fonts=1
         " If the previous symbols do not render for you then install a
         " powerline enabled font.
-        let g:airline_theme = 'powerlineish'
+        let g:airline_theme = 'solarized' " 'powerlineish' is another choice
         if !exists('g:airline_powerline_fonts')
             " Use the default set of separators with a few customizations
             let g:airline_left_sep='›'  " Slightly fancier than '>'
             let g:airline_right_sep='‹' " Slightly fancier than '<'
         endif
-    " }
-
-    " vim-gitgutter {
-        " https://github.com/airblade/vim-gitgutter/issues/106
-        let g:gitgutter_realtime = 0
     " }
 
 " }
