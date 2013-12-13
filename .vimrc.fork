@@ -134,8 +134,8 @@
             endif
 
             inoremap <expr><c-n> pumvisible() ? "\<C-n>" : neocomplete#start_manual_complete()
-            inoremap <silent><expr><TAB> neosnippet#jumpable() ? neosnippet#jump_impl() :
-                        \ (neosnippet#expandable() ? neosnippet#expand_impl() :
+            inoremap <silent><expr><TAB> neosnippet#jumpable() ? neosnippet#mappings#jump_impl() :
+                        \ (neosnippet#expandable() ? neosnippet#mappings#expand_impl() :
                         \ (pumvisible() ? "\<C-n>" : "\<TAB>"))
             iunmap <C-y>
 
