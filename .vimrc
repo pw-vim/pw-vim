@@ -472,6 +472,7 @@
         set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
         nmap <leader>sl :SessionList<CR>
         nmap <leader>ss :SessionSave<CR>
+        nmap <leader>sc :SessionClose<CR>
     " }
 
     " JSON {
@@ -764,6 +765,7 @@
             let g:indent_guides_auto_colors = 1
         else
             " For some colorschemes, autocolor will not work (eg: 'desert', 'ir_black')
+            let g:indent_guides_auto_colors = 0
             autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 ctermbg=3
             autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=4
         endif
