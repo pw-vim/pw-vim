@@ -8,13 +8,15 @@
     set spell&
     set rnu
     set noswapfile
-    set wildignore+=*-target,target,tmp_*
+    set wildignore+=node_modules,*-target,target,tmp_*
     set clipboard&
     set timeout
     set timeoutlen=300
     set ttimeoutlen=0
     set backupskip=/tmp/*,/private/tmp/*
-    set wildignorecase
+    if v:version >= 704
+        set wildignorecase
+    endif
     set nomore
     set mouse=
 
