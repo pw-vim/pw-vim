@@ -142,6 +142,8 @@
             iunmap <C-y>
 
             cabbrev nss NeoSnippetEdit -split
+
+            autocmd InsertLeave * NeoSnippetClearMarkers
         endif
 
     " Tagbar
