@@ -239,6 +239,10 @@
     " surround
         let g:surround_no_insert_mappings = 1
 
+    " nerd commenter
+        nmap <backspace> <Plug>NERDCommenterToggle
+        vmap <backspace> <Plug>NERDCommenterToggle
+
 " GUI Settings
     " GVIM- (here instead of .gvimrc)
         if has('gui_running')
