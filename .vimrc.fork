@@ -105,7 +105,7 @@
         let g:neobundle#types#git#default_protocol = 'git'
 
     " NeoComplete
-        if count(g:spf13_bundle_groups, 'neocomplete')
+        if has('lua') && count(g:spf13_bundle_groups, 'neocomplete')
             if !exists('g:neocomplete#same_filetypes')
                 let g:neocomplete#same_filetypes = {}
             endif
