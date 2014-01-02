@@ -36,6 +36,7 @@ endif
 " Misc
     if count(g:spf13_bundle_groups, 'misc')
         Bundle 'parantapa/moin.vim'
+        Bundle 'vim-scripts/nginx.vim'
     endif
 
 " Fenbi.com
