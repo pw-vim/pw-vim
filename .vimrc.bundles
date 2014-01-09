@@ -12,6 +12,12 @@
 "   While much of it is beneficial for general use, I would
 "   recommend picking out the parts you want and understand.
 "
+"   This file imports the various plugins of spf13. If you
+"   wish to alter which groups are imported, see vimrc.before.
+"   If you wish to add or remove individual bundles, create
+"   ~/.vimrc.bundles.local and `Bundle` or `UnBundle` as needed
+"   from there.
+"
 "   You can find me at http://spf13.com
 " }
 
@@ -70,6 +76,17 @@
               \ call neobundle#installer#clean('!' == '<bang>', <q-args>)
     " }
 
+    " Add an UnBundle command {
+        function! UnBundle(arg, ...)
+            for bundle in filter(neobundle#config#get_neobundles(), 'v:val.orig_name ==# a:arg')
+                call neobundle#config#rm(bundle.path)
+            endfor
+        endfunction
+
+        com! -nargs=+         UnBundle
+        \ call UnBundle(<args>)
+    " }
+
 " }
 
 " Bundles {
@@ -89,19 +106,7 @@
         endif
     " }
 
-    " Use local bundles config if available {
-        if filereadable(expand("~/.vimrc.bundles.local"))
-            source ~/.vimrc.bundles.local
-        endif
-    " }
-
-    " Use fork bundles config if available {
-        if filereadable(expand("~/.vimrc.bundles.fork"))
-            source ~/.vimrc.bundles.fork
-        endif
-    " }
-
-    " In your .vimrc.bundles.local file
+    " In your .vimrc.before.local file
     " list only the plugin groups you will use
     if !exists('g:spf13_bundle_groups')
         let g:spf13_bundle_groups=['general', 'neocomplcache', 'programming', 'php', 'ruby', 'python', 'go', 'twig', 'javascript', 'haskell', 'html', 'misc', 'scala']
@@ -136,7 +141,6 @@
             Bundle 'jistr/vim-nerdtree-tabs'
             Bundle 'flazz/vim-colorschemes'
             Bundle 'mbbill/undotree'
-            Bundle 'myusuf3/numbers.vim'
             Bundle 'nathanaelkane/vim-indent-guides'
             if !exists('g:spf13_no_views')
                 Bundle 'vim-scripts/restore_view.vim'
@@ -171,6 +175,9 @@
             if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
                 source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
             endif
+        elseif count(g:spf13_bundle_groups, 'youcompleteme')
+            Bundle 'Valloric/YouCompleteMe'
+            Bundle 'SirVer/ultisnips'
         elseif count(g:spf13_bundle_groups, 'neocomplcache')
             Bundle 'Shougo/neocomplcache'
             Bundle 'Shougo/neosnippet'
@@ -234,6 +241,7 @@
         if count(g:spf13_bundle_groups, 'html')
             Bundle 'amirh/HTML-AutoCloseTag'
             Bundle 'hail2u/vim-css3-syntax'
+            Bundle 'gorodinskiy/vim-coloresque'
             Bundle 'tpope/vim-haml'
         endif
     " }
@@ -249,8 +257,7 @@
 
     " Go Lang {
         if count(g:spf13_bundle_groups, 'go')
-            Bundle 'jnwhiteh/vim-golang'
-            Bundle 'spf13/vim-gocode'
+            Bundle 'Blackrush/vim-gocode'
         endif
     " }
 
@@ -274,7 +281,14 @@
 
 " }
 
-" General {
-    " set autowrite                  " automatically write a file when leaving a modified buffer
-    set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
+" Use fork bundles config if available {
+    if filereadable(expand("~/.vimrc.bundles.fork"))
+        source ~/.vimrc.bundles.fork
+    endif
+" }
+
+" Use local bundles config if available {
+    if filereadable(expand("~/.vimrc.bundles.local"))
+        source ~/.vimrc.bundles.local
+    endif
 " }
