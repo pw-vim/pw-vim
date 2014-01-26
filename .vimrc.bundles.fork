@@ -72,3 +72,9 @@
         Bundle 'rizzatti/funcoo.vim'
         Bundle 'rizzatti/dash.vim'
     endif
+
+" neosnippet
+    if count(g:spf13_bundle_groups, 'neosnippet')
+        Bundle 'Shougo/neosnippet'
+        Bundle 'honza/vim-snippets'
+    endif

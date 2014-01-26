@@ -103,41 +103,14 @@
         let g:neobundle#types#git#default_protocol = 'git'
 
     " NeoComplete
-        if has('lua') && count(g:spf13_bundle_groups, 'neocomplete')
-            if !exists('g:neocomplete#same_filetypes')
-                let g:neocomplete#same_filetypes = {}
-            endif
-            let g:neocomplete#enable_fuzzy_completion = 0
-            let g:neocomplete#same_filetypes.js = 'js'
-            let g:neocomplete#same_filetypes.handlebars = 'handlebars'
-            let g:neocomplete#same_filetypes.less = 'less,css'
-            let g:neocomplete#same_filetypes.vm = 'vm'
-            let g:neocomplete#use_vimproc = 1
-            let g:neocomplete#disable_auto_complete = 1
-            let g:neosnippet#enable_snipmate_compatibility = 0
-            let g:neocomplete#enable_smart_case = 0
-            let g:snips_author = 'zhangyc <zhangyc@fenbi.com>'
-
-            if !exists('g:neocomplete#sources#file_include#exts')
-                let g:neocomplete#sources#file_include#exts = {}
-            endif
-            let g:neocomplete#sources#file_include#exts.less = ['less', 'css']
-            let g:neocomplete#sources#file_include#exts.javascript = ['js']
-
-            if !exists('g:neocomplete#sources#file_include#exprs')
-                let g:neocomplete#sources#file_include#exprs = {}
-            endif
-            let g:neocomplete#sources#file_include#exprs.javascript = 'fnamemodify(substitute(v:fname, "/", "::", "g"), ":r")'
-
+        if count(g:spf13_bundle_groups, 'neosnippet')
             if count(g:spf13_bundle_groups, 'fenbi')
                 let g:neosnippet#snippets_directory='~/.vim/bundle/fenbi-frontend/snippets'
             endif
 
-            inoremap <expr><c-n> pumvisible() ? "\<C-n>" : neocomplete#start_manual_complete()
             inoremap <silent><expr><TAB> neosnippet#jumpable() ? neosnippet#mappings#jump_impl() :
                         \ (neosnippet#expandable() ? neosnippet#mappings#expand_impl() :
                         \ (pumvisible() ? "\<C-n>" : "\<TAB>"))
-            iunmap <C-y>
 
             cabbrev nss NeoSnippetEdit -split
 
