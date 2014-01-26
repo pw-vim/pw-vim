@@ -245,33 +245,13 @@
         nmap <backspace> <Plug>NERDCommenterToggle
         vmap <backspace> <Plug>NERDCommenterToggle
 
+    " dash
+        if count(g:spf13_bundle_groups, 'dash')
+            nmap <silent> K <Plug>DashGlobalSearch
+        endif
+
 " GUI Settings
     " GVIM- (here instead of .gvimrc)
         if has('gui_running')
             set guioptions=
         endif
-
-" Remove Bundle
-    UnBundle 'spf13/vim-preview'
-    UnBundle 'tpope/vim-cucumber'
-    UnBundle 'quentindecock/vim-cucumber-align-pipes'
-    UnBundle 'Puppet-Syntax-Highlighting'
-    UnBundle 'Lokaltog/vim-easymotion'
-    UnBundle 'vim-scripts/sessionman.vim'
-    UnBundle 'terryma/vim-multiple-cursors'
-    UnBundle 'matchit.zip'
-    UnBundle 'jistr/vim-nerdtree-tabs'
-    UnBundle 'flazz/vim-colorschemes'
-    UnBundle 'godlygeek/tabular'
-    UnBundle 'altercation/vim-colors-solarized'
-    UnBundle 'spf13/vim-colors'
-    UnBundle 'spf13/vim-autoclose'
-    UnBundle 'godlygeek/csapprox'
-    UnBundle 'flazz/vim-colorschemes'
-    UnBundle 'briancollins/vim-jst'
-    UnBundle 'kchmck/vim-coffee-script'
-    UnBundle 'tpope/vim-haml'
-    UnBundle 'airblade/vim-gitgutter'
-    UnBundle 'kien/ctrlp.vim'
-    UnBundle 'mileszs/ack.vim'
-    UnBundle 'myusuf3/numbers.vim'
