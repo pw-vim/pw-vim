@@ -72,8 +72,3 @@
         Bundle 'rizzatti/funcoo.vim'
         Bundle 'rizzatti/dash.vim'
     endif
-
-" neosnippet
-    if count(g:spf13_bundle_groups, 'ultisnips')
-        Bundle 'SirVer/ultisnips'
-    endif

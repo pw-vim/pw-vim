@@ -162,10 +162,10 @@ For example, disabling the 'AutoClose' and 'scrooloose/syntastic' plugins
 Main changes:
 
 * Use [Unite] instead [ctrlp].
+* Use [snipmate] instead [neocomplete].
 * Map `jj` to `<ESC>`.
 * Swap `0` and `^`, `0` is more convenience.
 * Use my favorite color theme [molokai] instead [solarized].
-* Remove a dozen language support plugins such like ruby, scala, twig, cucumber.
 * Reset some Vim settings to default:
     * Unbind vim register and system clipboard.
     * Remove `options` from `viewoptions`.
@@ -173,17 +173,13 @@ Main changes:
     * `wrap`.
     * `scrolljump` to 0.
     * `scrolloff` to 0.
-* Key mapping
+* Reset some map to default setting
     * Unmap `<C-J>`, `<C-K>`, `<C-L>`, `<C-H>`.
     * Unmap `<` and `>`.
     * Unmap `j`/`k`.
-* Add a new bundle group `fenbi` for my team.
+* Use default leader key `/`
 
 The reason is very simple: I don't need them.
-
-# Bundle group `fenbi`
-
-The bundle group `fenbi` is some plugin used by our team, so fell free to disable this group if you is not in our team.
 
 # Fork me on GitHub
 
@@ -232,3 +228,4 @@ I'm always happy to take pull requests from others. Go ahead and fork me.
 [phpmanual-img]:https://i.imgur.com/c0GGP.png
 [easymotion-img]:https://i.imgur.com/ZsrVL.png
 [airline-img]:https://i.imgur.com/D4ZYADr.png
+[snipmate]:https://github.com/garbas/vim-snipmate

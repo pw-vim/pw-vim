@@ -203,13 +203,6 @@
             nmap <silent> K <Plug>DashGlobalSearch
         endif
 
-    " ultisnips
-        if count(g:spf13_bundle_groups, 'ultisnips')
-            if count(g:spf13_bundle_groups, 'fenbi')
-                let g:UltiSnipsSnippetsDir = '~/.vim/bundle/fenbi-frontend/UltiSnips'
-            endif
-        endif
-
 " GUI Settings
     " GVIM- (here instead of .gvimrc)
         if has('gui_running')
