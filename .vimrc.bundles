@@ -182,7 +182,7 @@
             Bundle 'Shougo/neocomplcache'
             Bundle 'Shougo/neosnippet'
             Bundle 'honza/vim-snippets'
-        elseif has('lua') && count(g:spf13_bundle_groups, 'neocomplete')
+        elseif count(g:spf13_bundle_groups, 'neocomplete')
             Bundle 'Shougo/neocomplete.vim.git'
             Bundle 'Shougo/neosnippet'
             Bundle 'honza/vim-snippets'

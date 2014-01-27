@@ -95,27 +95,9 @@
 
     map <space> :e #<cr>
 
-" OmniComplete
-    set completeopt-=preview
-
 " Plugins
     " NeoBundle
         let g:neobundle#types#git#default_protocol = 'git'
-
-    " NeoComplete
-        if count(g:spf13_bundle_groups, 'neosnippet')
-            if count(g:spf13_bundle_groups, 'fenbi')
-                let g:neosnippet#snippets_directory='~/.vim/bundle/fenbi-frontend/snippets'
-            endif
-
-            inoremap <silent><expr><TAB> neosnippet#jumpable() ? neosnippet#mappings#jump_impl() :
-                        \ (neosnippet#expandable() ? neosnippet#mappings#expand_impl() :
-                        \ (pumvisible() ? "\<C-n>" : "\<TAB>"))
-
-            cabbrev nss NeoSnippetEdit -split
-
-            autocmd InsertLeave * NeoSnippetClearMarkers
-        endif
 
     " Tagbar
         nnoremap <silent> <F11> :TagbarToggle<cr>
@@ -219,6 +201,13 @@
     " dash
         if count(g:spf13_bundle_groups, 'dash')
             nmap <silent> K <Plug>DashGlobalSearch
+        endif
+
+    " ultisnips
+        if count(g:spf13_bundle_groups, 'ultisnips')
+            if count(g:spf13_bundle_groups, 'fenbi')
+                let g:UltiSnipsSnippetsDir = '~/.vim/bundle/fenbi-frontend/UltiSnips'
+            endif
         endif
 
 " GUI Settings

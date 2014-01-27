@@ -74,7 +74,6 @@
     endif
 
 " neosnippet
-    if count(g:spf13_bundle_groups, 'neosnippet')
-        Bundle 'Shougo/neosnippet'
-        Bundle 'honza/vim-snippets'
+    if count(g:spf13_bundle_groups, 'ultisnips')
+        Bundle 'SirVer/ultisnips'
     endif
