@@ -49,6 +49,7 @@
 
 " JavaScript
     if count(g:spf13_bundle_groups, 'javascript')
+        Bundle 'moll/vim-node'
     endif
 
 " Misc
