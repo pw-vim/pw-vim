@@ -48,10 +48,6 @@
     nmap gp "0p
     nmap gP "0P
 
-    " Delete to blackhole
-    nmap gd "_d
-    nmap gD "_D
-
     " map double j to <esc>
     inoremap <silent> jj <esc>
 
