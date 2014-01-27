@@ -44,23 +44,6 @@
     vunmap <
     vunmap >
 
-    unmap [F
-    unmap [H
-    iunmap [F
-    iunmap [H
-
-    unmap $
-    unmap <End>
-    unmap <Home>
-    unmap ^
-    unmap 0
-    unmap <F11>
-
-    set t_ku=OA
-    set t_kd=OB
-    set t_kr=OC
-    set t_kl=OD
-
     " Paste yank register
     nmap gp "0p
     nmap gP "0P
@@ -100,7 +83,7 @@
         let g:neobundle#types#git#default_protocol = 'git'
 
     " Tagbar
-        nnoremap <silent> <F11> :TagbarToggle<cr>
+        nnoremap <silent> <F10> :TagbarToggle<cr>
 
     " NerdTree
         unmap <leader>e
