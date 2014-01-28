@@ -6,4 +6,4 @@ let g:spf13_no_autochdir = 1
 let g:spf13_no_indent_guides_autocolor = 1
 let g:spf13_no_views = 1
 let g:spf13_bundle_groups=['general', 'snipmate', 'programming', 'javascript', 'html', 'misc']
-let g:spf13_leader = '\'
+let g:spf13_no_omni_complete = 1

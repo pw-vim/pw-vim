@@ -6,7 +6,11 @@
     set fileformats=unix,dos,mac
     set viewoptions-=options
     set spell&
-    set rnu
+    if v:version >= 703
+        set rnu
+    else
+        set nu
+    endif
     set noswapfile
     set wildignore+=node_modules,*-target,target,tmp_*
     set clipboard&
