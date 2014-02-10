@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 ############################  SETUP PARAMETERS
 app_name='pw-vim'
-git_uri='https://github.com/perfectworks/pw-vim.git'
+[ -z "$git_uri" ] && git_uri='https://github.com/perfectworks/pw-vim.git'
 git_branch='master'
 debug_mode='0'
 fork_maintainer='0'
+[ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/gmarik/vundle.git"
 
 ############################  BASIC SETUP TOOLS
 msg() {
@@ -24,7 +25,7 @@ error() {
 
 debug() {
     if [ "$debug_mode" -eq '1' ] && [ "$ret" -gt '1' ]; then
-      msg "An error occured in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
+      msg "An error occurred in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
     fi
 }
 
@@ -93,7 +94,7 @@ clone_repo() {
 
 clone_neobundle() {
     if [ ! -e "$HOME/.vim/bundle/neobundle.vim" ]; then
-        git clone https://github.com/Shougo/neobundle.vim.git "$HOME/.vim/bundle/neobundle.vim"
+        git clone $VUNDLE_URI "$HOME/.vim/bundle/neobundle.vim"
     else
         upgrade_repo "neobundle.vim"   "Successfully updated neobundle.vim"
     fi
