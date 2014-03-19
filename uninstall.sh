@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-endpath="$HOME/.pw-vim"
+endpath="$HOME/.pw-vim-3"
 
 warn() {
     echo "$1" >&2
@@ -15,4 +15,4 @@ rm $HOME/.vimrc
 rm $HOME/.vimrc.bundles
 rm $HOME/.vim
 
-rm -rf $endpath
+rm -rf $app_dir

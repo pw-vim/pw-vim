@@ -71,7 +71,7 @@
     scriptencoding utf-8
 
     if has('clipboard')
-        if LINUX()   " On Linux use + register for copy-paste
+        if has('unnamedplus')  " When possible use + register for copy-paste
             set clipboard=unnamedplus
         else         " On mac and Windows, use * register for copy-paste
             set clipboard=unnamed
@@ -372,13 +372,6 @@
     " http://stackoverflow.com/a/8064607/127816
     vnoremap . :normal .<CR>
 
-    " Fix home and end keybindings for screen, particularly on mac
-    " - for some reason this fixes the arrow keys too. huh.
-    map [F $
-    imap [F $
-    map [H g0
-    imap [H g0
-
     " For when you forget to sudo.. Really Write the file.
     cmap w!! w !sudo tee % >/dev/null
 
@@ -586,7 +579,7 @@
         nnoremap <silent> <leader>gi :Git add -p %<CR>
         nnoremap <silent> <leader>gg :SignifyToggle<CR>
     "}
-    
+
     " YouCompleteMe {
         if count(g:spf13_bundle_groups, 'youcompleteme')
             let g:acp_enableAtStartup = 0
@@ -598,7 +591,7 @@
             let g:UltiSnipsExpandTrigger = '<C-j>'
             let g:UltiSnipsJumpForwardTrigger = '<C-j>'
             let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-            
+
             " Enable omni completion.
             autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
             autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags

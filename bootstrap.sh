@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 ############################  SETUP PARAMETERS
 app_name='pw-vim'
+app_dir="$HOME/.pw-vim-3"
 [ -z "$git_uri" ] && git_uri='https://github.com/perfectworks/pw-vim.git'
 git_branch='master'
 debug_mode='0'
@@ -64,7 +65,7 @@ upgrade_repo() {
       msg "trying to update $1"
 
       if [ "$1" = "$app_name" ]; then
-          cd "$HOME/.$app_name-3" &&
+          cd "$app_dir" &&
           git pull origin "$git_branch"
       fi
 
@@ -80,10 +81,9 @@ upgrade_repo() {
 
 clone_repo() {
     program_exists "git" "Sorry, we cannot continue without GIT, please install it first."
-    endpath="$HOME/.$app_name-3"
 
-    if [ ! -e "$endpath/.git" ]; then
-        git clone --recursive -b "$git_branch" "$git_uri" "$endpath"
+    if [ ! -e "$app_dir" ]; then
+        git clone --recursive -b "$git_branch" "$git_uri" "$app_dir"
         ret="$?"
         success "$1"
         debug
@@ -104,7 +104,7 @@ clone_neobundle() {
 }
 
 create_symlinks() {
-    endpath="$HOME/.$app_name-3"
+    endpath="$app_dir"
 
     if [ ! -d "$endpath/.vim/bundle" ]; then
         mkdir -p "$endpath/.vim/bundle"
