@@ -9,7 +9,6 @@
     UnBundle 'matchit.zip'
     UnBundle 'jistr/vim-nerdtree-tabs'
     UnBundle 'flazz/vim-colorschemes'
-    UnBundle 'godlygeek/tabular'
     UnBundle 'altercation/vim-colors-solarized'
     UnBundle 'spf13/vim-colors'
     UnBundle 'spf13/vim-autoclose'
@@ -22,6 +21,8 @@
     UnBundle 'gorodinskiy/vim-coloresque'
     UnBundle 'mhinz/vim-signify'
     UnBundle 'bling/vim-bufferline'
+    UnBundle 'osyo-manga/vim-over'
+    UnBundle 'justinmk/vim-sneak'
 
 " General
     Bundle 'cmdline-completion'

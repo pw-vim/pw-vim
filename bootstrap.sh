@@ -142,7 +142,14 @@ create_symlinks() {
 setup_neobundle() {
     system_shell="$SHELL"
     export SHELL='/bin/sh'
-    vim -u "$HOME/.vimrc.bundles" +NeoBundleInstall! +NeoBundleClean +qall
+    
+    vim \
+        -u "$HOME/.vimrc.bundles" \
+        "+set nomore" \
+        +NeoBundleInstall! \
+        +NeoBundleClean \
+        +qall
+    
     export SHELL="$system_shell"
 
     success "$1"
