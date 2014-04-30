@@ -169,6 +169,11 @@
             nmap <silent> <F9> :SnipMateOpenSnippetFiles<cr>
         endif
 
+    " JSON
+        let g:vim_json_syntax_conceal = 0
+        autocmd FileType json setlocal foldmethod=syntax
+        autocmd FileType json setlocal foldlevel=1
+
 " GUI Settings
     " GVIM- (here instead of .gvimrc)
         if has('gui_running')
