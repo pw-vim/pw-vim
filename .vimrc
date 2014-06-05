@@ -215,7 +215,7 @@
     " To disable the stripping of whitespace, add the following to your
     " .vimrc.before.local file:
     "   let g:spf13_keep_trailing_whitespace = 1
-    autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
+    autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml,perl autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
     "autocmd FileType go autocmd BufWritePre <buffer> Fmt
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
     autocmd FileType haskell setlocal expandtab shiftwidth=2 softtabstop=2
@@ -532,9 +532,15 @@
     " }
 
     " PyMode {
-        let g:pymode_lint_checker = "pyflakes"
-        let g:pymode_utils_whitespaces = 0
+        " Disable if python support not present
+        if !has('python')
+            let g:pymode = 0
+        endif
+
+        let g:pymode_lint_checkers = ['pyflakes']
+        let g:pymode_trim_whitespaces = 0
         let g:pymode_options = 0
+        let g:pymode_rope = 0
     " }
 
     " ctrlp {
@@ -550,6 +556,8 @@
             let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
         elseif executable('ag')
             let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
+        elseif executable('ack-grep')
+            let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
         elseif executable('ack')
             let s:ctrlp_fallback = 'ack %s --nocolor -f'
         else
@@ -562,6 +570,12 @@
             \ },
             \ 'fallback': s:ctrlp_fallback
         \ }
+
+        " CtrlP extensions
+        let g:ctrlp_extensions = ['funky']
+
+        "funky
+        nnoremap <Leader>fu :CtrlPFunky<Cr>
     "}
 
     " TagBar {
@@ -583,12 +597,6 @@
             \ }
     "}
 
-    " PythonMode {
-        " Disable if python support not present
-        if !has('python')
-            let g:pymode = 0
-        endif
-    " }
 
     " Fugitive {
         nnoremap <silent> <leader>gs :Gstatus<CR>
@@ -860,6 +868,7 @@
             let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
             let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
             let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
     " }
     " Normal Vim omni-completion {
     " To disable omni complete, add the following to your .vimrc.before.local file:

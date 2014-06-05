@@ -78,6 +78,11 @@
 
     map <space> :e #<cr>
 
+
+    unmap <silent> <D-t>
+    unmap <silent> <D-r>
+    unmap <Leader>fu
+
 " Plugins
     " NeoBundle
         let g:neobundle#types#git#default_protocol = 'git'

@@ -144,7 +144,7 @@ setup_neobundle() {
     export SHELL='/bin/sh'
     
     vim \
-        -u "$HOME/.vimrc.bundles" \
+        -u "$app_dir/.vimrc.bundles.default" \
         "+set nomore" \
         +NeoBundleInstall! \
         +NeoBundleClean \
