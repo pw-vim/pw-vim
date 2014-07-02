@@ -123,6 +123,7 @@
             Bundle 'altercation/vim-colors-solarized'
             Bundle 'spf13/vim-colors'
             Bundle 'tpope/vim-surround'
+            Bundle 'tpope/vim-repeat'
             Bundle 'spf13/vim-autoclose'
             Bundle 'kien/ctrlp.vim'
             Bundle 'tacahiroy/ctrlp-funky'
@@ -151,6 +152,7 @@
             Bundle 'osyo-manga/vim-over'
             Bundle 'kana/vim-textobj-user'
             Bundle 'kana/vim-textobj-indent'
+            Bundle 'gcmt/wildfire.vim'
         endif
     " }
 
@@ -234,6 +236,7 @@
         if count(g:spf13_bundle_groups, 'scala')
             Bundle 'derekwyatt/vim-scala'
             Bundle 'derekwyatt/vim-sbt'
+            Bundle 'xptemplate'
         endif
     " }
 
