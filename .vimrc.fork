@@ -83,96 +83,122 @@
         let g:neobundle#types#git#default_protocol = 'git'
 
     " Tagbar
-        nnoremap <silent> <F10> :TagbarToggle<cr>
+        if isdirectory(expand("~/.vim/bundle/tagbar/"))
+            nnoremap <silent> <F10> :TagbarToggle<cr>
+        endif
 
     " NerdTree
-        unmap <leader>e
-        unmap <C-e>
-        map <silent> <leader>nt :NERDTreeFind<CR>
-        let NERDTreeIgnore = ['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.DS_Store']
-        let NERDTreeQuitOnOpen = 0
-        let NERDTreeShowHidden = 0
+        if isdirectory(expand("~/.vim/bundle/nerdtree"))
+            unmap <leader>e
+            unmap <C-e>
+            map <silent> <leader>nt :NERDTreeFind<CR>
+            let NERDTreeIgnore = ['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.DS_Store']
+            let NERDTreeQuitOnOpen = 0
+            let NERDTreeShowHidden = 0
+        endif
 
     " Tabularize
-        nmap <Leader>a" :Tabularize /"<CR>
-        vmap <Leader>a" :Tabularize /"<CR>
-        nmap <Leader>a/ :Tabularize /\/<CR>
-        vmap <Leader>a/ :Tabularize /\/<CR>
+        if isdirectory(expand("~/.vim/bundle/tabular"))
+            nmap <Leader>a" :Tabularize /"<CR>
+            vmap <Leader>a" :Tabularize /"<CR>
+            nmap <Leader>a/ :Tabularize /\/<CR>
+            vmap <Leader>a/ :Tabularize /\/<CR>
+        endif
 
     " unite
-        let g:unite_winheight = 10
-        let g:unite_split_rule = 'botright'
+        if isdirectory(expand("~/.vim/bundle/unite.vim"))
+            let g:unite_winheight = 10
+            let g:unite_split_rule = 'botright'
 
-        call unite#custom#source('file_mru', 'converters', ['converter_relative_word'])
-        call unite#custom#source('file_rec/async', 'sorters', ['sorter_ftime'])
-        nnoremap <silent> <C-p> :Unite -start-insert -unique file_mru file_rec/async<cr>
+            call unite#custom#source('file_mru', 'converters', ['converter_relative_word'])
+            call unite#custom#source('file_rec/async', 'sorters', ['sorter_ftime'])
+            nnoremap <silent> <C-p> :Unite -start-insert -unique file_mru file_rec/async<cr>
 
-        let g:unite_source_grep_max_candidates = 200
-        let g:unite_source_grep_command = 'ag'
-        let g:unite_source_grep_default_opts = '--nocolor --nogroup --hidden'
-        let g:unite_source_grep_recursive_opt = ''
+            let g:unite_source_grep_max_candidates = 200
+            let g:unite_source_grep_command = 'ag'
+            let g:unite_source_grep_default_opts = '--nocolor --nogroup --hidden'
+            let g:unite_source_grep_recursive_opt = ''
 
-        call unite#custom#profile('source/grep', 'context', {'no_quit' : 1})
-        nnoremap <silent> <f3> :Unite grep<cr>
-        nnoremap <silent> <leader>* :UniteWithCursorWord grep<cr>
+            call unite#custom#profile('source/grep', 'context', {'no_quit' : 1})
+            nnoremap <silent> <f3> :Unite grep<cr>
+            nnoremap <silent> <leader>* :UniteWithCursorWord grep<cr>
 
-        let g:unite_source_history_yank_enable = 1
-        nmap <leader>y :Unite history/yank<cr>
+            let g:unite_source_history_yank_enable = 1
+            nmap <leader>y :Unite history/yank<cr>
 
-        nmap <f1> :Unite -start-insert help<cr>
+            nmap <f1> :Unite -start-insert help<cr>
+        endif
 
     " Gist
-        let g:gist_open_browser_after_post = 1
-        let g:gist_post_private = 1
-        let g:gist_show_private = 1
+        if isdirectory(expand("~/.vim/bundle/gist-vim"))
+            let g:gist_open_browser_after_post = 1
+            let g:gist_post_private = 1
+            let g:gist_show_private = 1
+        endif
 
     " syntastic
-        let g:syntastic_check_on_wq = 0
-        let g:syntastic_mode_map = { 'mode': 'active',
-                    \ 'active_filetypes': [],
-                    \ 'passive_filetypes': ['html', 'java'] }
+        if isdirectory(expand("~/.vim/bundle/syntastic"))
+            let g:syntastic_check_on_wq = 0
+            let g:syntastic_mode_map = { 'mode': 'active',
+                        \ 'active_filetypes': [],
+                        \ 'passive_filetypes': ['html', 'java'] }
+        endif
 
     " Emmet
-       let g:user_emmet_leader_key = '<c-k>'
+        if isdirectory(expand("~/.vim/bundle/emmet-vim"))
+            let g:user_emmet_leader_key = '<c-k>'
+        endif
 
     " Indent guides
-        let g:indent_guides_auto_colors = 0
-        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 ctermbg=235
-        autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=237
+        if isdirectory(expand("~/.vim/bundle/vim-indent-guides"))
+            let g:indent_guides_auto_colors = 0
+            autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 ctermbg=235
+            autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=237
+        endif
 
     " vitality
-        let g:vitality_fix_focus = 0
+        if isdirectory(expand("~/.vim/bundle/vitality.vim"))
+            let g:vitality_fix_focus = 0
+        endif
 
     " airline
-        let g:airline_theme = 'powerlineish'
-        let g:airline_branch_prefix = '⎇ '
-        let g:airline_left_sep = ''
-        let g:airline_right_sep = ''
-        let g:airline_linecolumn_prefix = '␊ '
-        let g:airline_paste_symbol = 'Þ'
-        let g:airline#extensions#eclim#enabled = 0
+        if isdirectory(expand("~/.vim/bundle/vim-airline"))
+            let g:airline_theme = 'powerlineish'
+            let g:airline_branch_prefix = '⎇ '
+            let g:airline_left_sep = ''
+            let g:airline_right_sep = ''
+            let g:airline_linecolumn_prefix = '␊ '
+            let g:airline_paste_symbol = 'Þ'
+            let g:airline#extensions#eclim#enabled = 0
+        endif
 
     " surround
-        let g:surround_no_insert_mappings = 1
+        if isdirectory(expand("~/.vim/bundle/vim-surround"))
+            let g:surround_no_insert_mappings = 1
+        endif
 
     " nerd commenter
-        nmap <backspace> <Plug>NERDCommenterToggle
-        vmap <backspace> <Plug>NERDCommenterToggle
+        if isdirectory(expand("~/.vim/bundle/nerdcommenter"))
+            nmap <backspace> <Plug>NERDCommenterToggle
+            vmap <backspace> <Plug>NERDCommenterToggle
+        endif
 
     " dash
-        if count(g:spf13_bundle_groups, 'dash')
+        if isdirectory(expand("~/.vim/bundle/dash.vim"))
             nmap <silent> K <Plug>DashGlobalSearch
         endif
 
     " SnipMate
-        if count(g:spf13_bundle_groups, 'snipmate')
+        if isdirectory(expand("~/.vim/bundle/vim-snipmate"))
             nmap <silent> <F9> :SnipMateOpenSnippetFiles<cr>
         endif
 
     " JSON
-        let g:vim_json_syntax_conceal = 0
-        autocmd FileType json setlocal foldmethod=syntax
-        autocmd FileType json setlocal foldlevel=1
+        if isdirectory(expand("~/.vim/bundle/vim-json"))
+            let g:vim_json_syntax_conceal = 0
+            autocmd FileType json setlocal foldmethod=syntax
+            autocmd FileType json setlocal foldlevel=1
+        endif
 
 " GUI Settings
     " GVIM- (here instead of .gvimrc)
