@@ -13,7 +13,6 @@
     UnBundle 'spf13/vim-colors'
     UnBundle 'spf13/vim-autoclose'
     UnBundle 'godlygeek/csapprox'
-    UnBundle 'briancollins/vim-jst'
     UnBundle 'kchmck/vim-coffee-script'
     UnBundle 'kien/ctrlp.vim'
     UnBundle 'tacahiroy/ctrlp-funky'
