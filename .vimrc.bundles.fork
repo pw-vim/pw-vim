@@ -21,7 +21,6 @@
     UnBundle 'mhinz/vim-signify'
     UnBundle 'bling/vim-bufferline'
     UnBundle 'osyo-manga/vim-over'
-    UnBundle 'justinmk/vim-sneak'
 
 " General
     Bundle 'cmdline-completion'
