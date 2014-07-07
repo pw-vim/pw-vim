@@ -6,7 +6,7 @@ app_dir="$HOME/.pw-vim-3"
 git_branch='master'
 debug_mode='0'
 fork_maintainer='0'
-[ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/gmarik/vundle.git"
+[ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/Shougo/neobundle.vim"
 
 ############################  BASIC SETUP TOOLS
 msg() {
