@@ -23,6 +23,7 @@
     UnBundle 'osyo-manga/vim-over'
 
 " General
+    Bundle 'jlanzarotta/bufexplorer'
     Bundle 'cmdline-completion'
     Bundle 'tomasr/molokai'
     Bundle 'sjl/vitality.vim'
