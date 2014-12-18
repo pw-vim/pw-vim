@@ -161,7 +161,7 @@ I'm always happy to take pull requests from others. Go ahead and fork me.
 [Vim]:http://www.vim.org/download.php#pc
 [msysgit]:http://code.google.com/p/msysgit
 [Chocolatey]: http://chocolatey.org/
-[spf13.vim package]: http://chocolatey.org/packages/spf13.vim
+[spf13-vim package]: https://chocolatey.org/packages/spf13-vim
 [MacVim]:http://code.google.com/p/macvim/
 [pw-vim]:https://github.com/perfectworks/pw-vim
 [spf13-vim]:https://github.com/spf13/spf13-vim
