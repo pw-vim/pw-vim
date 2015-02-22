@@ -14,7 +14,7 @@
     UnBundle 'spf13/vim-autoclose'
     UnBundle 'godlygeek/csapprox'
     UnBundle 'kchmck/vim-coffee-script'
-    UnBundle 'kien/ctrlp.vim'
+    UnBundle 'ctrlpvim/ctrlp.vim'
     UnBundle 'tacahiroy/ctrlp-funky'
     UnBundle 'mileszs/ack.vim'
     UnBundle 'gorodinskiy/vim-coloresque'
