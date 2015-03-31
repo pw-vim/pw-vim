@@ -141,8 +141,11 @@
 
     " syntastic
         if isdirectory(expand("~/.vim/bundle/syntastic"))
+            nnoremap <silent> <leader>l :SyntasticCheck<cr>
+            let g:syntastic_always_populate_loc_list = 1
+            let g:syntastic_javascript_checkers = ['jshint', 'jscs']
             let g:syntastic_check_on_wq = 0
-            let g:syntastic_mode_map = { 'mode': 'active',
+            let g:syntastic_mode_map = { 'mode': 'passive',
                         \ 'active_filetypes': [],
                         \ 'passive_filetypes': ['html', 'java'] }
         endif
