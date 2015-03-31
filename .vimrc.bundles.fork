@@ -37,13 +37,11 @@
 " HTML
     if count(g:spf13_bundle_groups, 'html')
         UnBundle 'gorodinskiy/vim-coloresque'
+        UnBundle 'amirh/HTML-AutoCloseTag'
 
-        Bundle 'lepture/vim-velocity'
-        Bundle 'juvenn/mustache.vim'
         Bundle 'mattn/emmet-vim'
         Bundle 'nono/vim-handlebars'
         Bundle 'digitaltoad/vim-jade'
-        Bundle 'briancollins/vim-jst'
         Bundle 'wavded/vim-stylus'
     endif
 
@@ -56,9 +54,12 @@
 
 " Misc
     if count(g:spf13_bundle_groups, 'misc')
+        UnBundle 'rust-lang/rust.vim'
         UnBundle 'spf13/vim-preview'
         UnBundle 'tpope/vim-cucumber'
+        UnBundle 'cespare/vim-toml'
         UnBundle 'quentindecock/vim-cucumber-align-pipes'
+        UnBundle 'saltstack/salt-vim'
 
         Bundle 'parantapa/moin.vim'
         Bundle 'vim-scripts/nginx.vim'
