@@ -146,7 +146,7 @@
             let g:syntastic_javascript_checkers = ['jshint', 'jscs']
             let g:syntastic_check_on_wq = 0
             let g:syntastic_mode_map = { 'mode': 'passive',
-                        \ 'active_filetypes': [],
+                        \ 'active_filetypes': ['go'],
                         \ 'passive_filetypes': ['html', 'java'] }
         endif
 
@@ -201,6 +201,11 @@
             let g:vim_json_syntax_conceal = 0
             autocmd FileType json setlocal foldmethod=syntax
             autocmd FileType json setlocal foldlevel=1
+        endif
+
+    " vim-go
+        if isdirectory(expand("~/.vim/bundle/vim-go"))
+            let g:go_fmt_fail_silently = 1
         endif
 
     " Startify
