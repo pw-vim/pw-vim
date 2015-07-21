@@ -144,7 +144,6 @@ Main changes:
     * Unmap `<C-J>`, `<C-K>`, `<C-L>`, `<C-H>`.
     * Unmap `<` and `>`.
     * Unmap `j`/`k`.
-* Use default leader key `/`
 
 The reason is very simple: I don't need them.
 
