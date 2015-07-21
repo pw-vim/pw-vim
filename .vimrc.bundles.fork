@@ -16,6 +16,7 @@
     UnBundle 'flazz/vim-colorschemes'
     UnBundle 'mhinz/vim-signify'
     UnBundle 'osyo-manga/vim-over'
+    UnBundle 'jiangmiao/auto-pairs'
 
     Bundle 'jlanzarotta/bufexplorer'
     Bundle 'cmdline-completion'
