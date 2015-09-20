@@ -131,6 +131,10 @@ create_symlinks() {
         lnif "$source_path/.vimrc"     "$target_path/.nvim/nvimrc"
     fi
 
+    lnif "$source_path/.vimrc.fork"         "$target_path/.vimrc.fork"
+    lnif "$source_path/.vimrc.bundles.fork" "$target_path/.vimrc.bundles.fork"
+    lnif "$source_path/.vimrc.before.fork"  "$target_path/.vimrc.before.for"
+
     touch  "$target_path/.vimrc.local"
 
     ret="$?"
