@@ -79,7 +79,7 @@
     " Add an UnBundle command {
         function! UnBundle(arg, ...)
             for bundle in filter(neobundle#config#get_neobundles(), 'v:val.orig_name ==# a:arg')
-                call neobundle#config#rm(bundle.path)
+                call neobundle#config#rmdir(bundle.path)
             endfor
         endfunction
 

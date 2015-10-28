@@ -18,6 +18,10 @@
     UnBundle 'osyo-manga/vim-over'
     UnBundle 'jiangmiao/auto-pairs'
     UnBundle 'powerline/fonts'
+    UnBundle 'kana/vim-textobj-user'
+    UnBundle 'kana/vim-textobj-indent'
+    UnBundle 'gcmt/wildfire.vim'
+    UnBundle 'tpope/vim-commentary'
 
     Bundle 'jlanzarotta/bufexplorer'
     Bundle 'cmdline-completion'
@@ -26,7 +30,6 @@
     Bundle 'tyru/fencview.vim'
     Bundle 'Shougo/unite.vim'
     Bundle 'Shougo/neomru.vim'
-    Bundle 'mhinz/vim-startify'
     Bundle 'Shougo/vimproc', {
     \ 'build' : {
     \     'windows' : 'make -f make_mingw32.mak',
@@ -40,9 +43,9 @@
     if count(g:spf13_bundle_groups, 'html')
         UnBundle 'gorodinskiy/vim-coloresque'
         UnBundle 'amirh/HTML-AutoCloseTag'
+        UnBundle 'tpope/vim-haml'
 
         Bundle 'mattn/emmet-vim'
-        Bundle 'nono/vim-handlebars'
         Bundle 'digitaltoad/vim-jade'
         Bundle 'wavded/vim-stylus'
     endif

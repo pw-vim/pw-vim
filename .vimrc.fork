@@ -208,51 +208,6 @@
             let g:go_fmt_fail_silently = 1
         endif
 
-    " Startify
-        if isdirectory(expand("~/.vim/bundle/vim-startify"))
-            let g:startify_custom_header = [
-                        \ "                    Code Works ",
-                        \ "",
-                        \ "                     _oo8oo_",
-                        \ "                    o8888888o",
-                        \ "                    88\" . \"88",
-                        \ "                    (| -_- |)",
-                        \ "                    0\\  =  /0",
-                        \ "                  ___/'==='\\___",
-                        \ "                .' \\\\|     |// '.",
-                        \ "               / \\\\|||  :  |||// \\",
-                        \ "              / _||||| -:- |||||_ \\",
-                        \ "             |   | \\\\\\  -  /// |   |",
-                        \ "             | \\_|  ''\\---/''  |_/ |",
-                        \ "             \\  .-\\__  '-'  __/-.  /",
-                        \ "           ___'. .'  /--.--\\  '. .'___",
-                        \ "        .\"\" '<  '.___\\_<|>_/___.'  >' \"\".",
-                        \ "       | | :  `- \\`.:`\\ _ /`:.`/ -`  : | |",
-                        \ "       \\  \\ `-.   \\_ __\\ /__ _/   .-` /  /",
-                        \ "   =====`-.____`.___ \\_____/ ___.`____.-`=====",
-                        \ "                     `=---=`",
-                        \ "",
-                        \ ]
-            let g:startify_custom_footer =
-                  \ ['', "   Vim is charityware. Please read ':help uganda'.", '']
-
-            let g:startify_relative_path = 1
-
-            let g:startify_skiplist = [
-                   \ '.git',
-                   \ 'node_modules',
-                   \ 'logs',
-                   \ 'bower_components'
-                   \ ]
-            hi StartifyBracket ctermfg=240
-            hi StartifyNumber  ctermfg=215
-            hi StartifyPath    ctermfg=245
-            hi StartifySlash   ctermfg=240
-            hi StartifySpecial ctermfg=240
-            hi StartifyHeader  ctermfg=114
-            hi StartifyFooter  ctermfg=240
-        endif
-
 " GUI Settings
     " GVIM- (here instead of .gvimrc)
         if has('gui_running')
