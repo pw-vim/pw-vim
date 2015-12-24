@@ -47,7 +47,6 @@
         UnBundle 'amirh/HTML-AutoCloseTag'
         UnBundle 'tpope/vim-haml'
 
-        Bundle 'mattn/emmet-vim'
         Bundle 'digitaltoad/vim-jade'
         Bundle 'wavded/vim-stylus'
     endif
