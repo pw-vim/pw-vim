@@ -25,6 +25,7 @@
     UnBundle 'luochen1990/rainbow'
     UnBundle 'jiangmiao/auto-pairs'
 
+    Bundle 'vim-airline/vim-airline-themes'
     Bundle 'jlanzarotta/bufexplorer'
     Bundle 'cmdline-completion'
     Bundle 'tomasr/molokai'
