@@ -69,8 +69,12 @@
     nnoremap y0 y^
     nnoremap y^ y0
 
-    " Start shell
-    map <Leader>sh :sh<CR>
+    " Start shell (terminal for NeoVim)
+    if has('nvim')
+        map <Leader>sh :terminal<CR>
+    else
+        map <Leader>sh :sh<CR>
+    endif
 
     " search very magic like perl default, and use g/ to search very no magic
     nnoremap g/ /\v
