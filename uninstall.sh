@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-endpath="$HOME/.pw-vim-3"
+endpath="$HOME/.pw-vim"
 
 warn() {
     echo "$1" >&2

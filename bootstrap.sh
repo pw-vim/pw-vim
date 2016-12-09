@@ -16,8 +16,8 @@
 
 ############################  SETUP PARAMETERS
 app_name='pw-vim'
-[ -z "$APP_PATH" ] && APP_PATH="$HOME/.pw-vim-3"
-[ -z "$REPO_URI" ] && REPO_URI='https://github.com/perfectworks/pw-vim.git'
+[ -z "$APP_PATH" ] && APP_PATH="$HOME/.pw-vim"
+[ -z "$REPO_URI" ] && REPO_URI='https://github.com/pw-vim/pw-vim.git'
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH='master'
 debug_mode='0'
 fork_maintainer='0'
