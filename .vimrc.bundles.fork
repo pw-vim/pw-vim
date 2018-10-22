@@ -25,6 +25,7 @@
     UnBundle 'luochen1990/rainbow'
     UnBundle 'jiangmiao/auto-pairs'
 
+    Bundle 'editorconfig/editorconfig-vim'
     Bundle 'vim-airline/vim-airline-themes'
     Bundle 'jlanzarotta/bufexplorer'
     Bundle 'cmdline-completion'
@@ -58,6 +59,7 @@
         UnBundle 'kchmck/vim-coffee-script'
 
         Bundle 'moll/vim-node'
+        Bundle 'leafgarland/typescript-vim'
     endif
 
 " Misc
